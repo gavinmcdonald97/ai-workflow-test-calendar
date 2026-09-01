@@ -78,7 +78,7 @@ On `feature/calendar`, merged bottom-up into it:
 
 1. **🎨 The Look ← you are here**
 2. #2 — 🗓️ The Month Grid
-3. ⏭️ Moving Between Months — not built yet
+3. #3 — ⏭️ Moving Between Months
 4. ✍️ Adding an Event — not built yet
 5. 💾 Events That Stick Around — not built yet
 6. 🗑️ Changing Your Mind — not built yet
