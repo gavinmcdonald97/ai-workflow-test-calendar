@@ -1,5 +1,5 @@
-/* Base — a small reset and the default look of plain HTML elements.
-   Every value here comes from tokens.css. */
+/* Base — a small reset, the page backdrop, and the default look of plain HTML
+   elements. Every value here comes from tokens.css. */
 
 *,
 *::before,
@@ -15,7 +15,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-paper);
+  min-height: 100vh;
+  background: var(--backdrop-base);
   color: var(--color-ink);
   font-family: var(--font-ui);
   font-size: var(--text-base);
@@ -23,12 +24,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* The colour wash the glass refracts. Three soft pools of colour, fixed in
+   place so they stay put while the page scrolls — glass over a moving
+   background reads as a cheap effect rather than a material. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60vw 60vw at 12% 8%, var(--backdrop-wash-1), transparent 65%),
+    radial-gradient(55vw 55vw at 88% 22%, var(--backdrop-wash-2), transparent 65%),
+    radial-gradient(65vw 65vw at 50% 100%, var(--backdrop-wash-3), transparent 65%);
+}
+
 h1,
 h2,
 h3 {
   margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
 }
 

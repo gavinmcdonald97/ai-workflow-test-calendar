@@ -1,43 +1,63 @@
-/* Design tokens — the single place colours, type and spacing are decided.
-   Nothing else in this project may invent a colour, a font size or a gap;
-   it uses a name from this file. That is what keeps the UI consistent as
-   more of the calendar gets built. */
+/* Design tokens — the single place colours, materials, type and spacing are
+   decided. Nothing else in this project may invent a colour, a blur or a gap;
+   it uses a name from this file. That is what keeps the UI consistent as more
+   of the calendar gets built. */
 
 :root {
-  /* ---- Colour: light (the default) ------------------------------------ */
+  /* ---- The backdrop --------------------------------------------------
+     Glass only looks like glass when there is something behind it. The page
+     is a soft colour wash; every panel above it is translucent and picks up
+     the colour underneath. Kept deliberately pale so that text sitting on
+     glass stays readable wherever it lands. */
 
-  /* Backgrounds, from the page outwards */
-  --color-paper: #FAF7F2;          /* the page itself — warm, not clinical white */
-  --color-surface: #FFFFFF;        /* things sitting on the page: panels, cards */
-  --color-surface-sunken: #F1EDE5; /* recessed areas: days outside the month */
+  --backdrop-base: #E4EAF7;
+  --backdrop-wash-1: #9BBDF2;  /* cool blue   */
+  --backdrop-wash-2: #C9AEF0;  /* soft lilac  */
+  --backdrop-wash-3: #F7C3A8;  /* warm peach  */
 
-  /* Text */
-  --color-ink: #1C1917;            /* primary text */
-  --color-ink-muted: #6B635A;      /* secondary text: weekday names, times */
+  /* ---- The glass material --------------------------------------------
+     Four parts make the effect, and they always travel together:
+       fill       a translucent white, so the wash shows through
+       blur       frosts whatever is behind it
+       border     a bright hairline, like the cut edge of real glass
+       highlight  a single lit pixel along the top, where light catches it */
 
-  /* Lines. Two, because they have different jobs and different rules:
-     --color-line is decorative separation, --color-line-strong outlines
-     things you interact with and must stay visible (3:1) to do its job. */
-  --color-line: #E4DED2;
-  --color-line-strong: #8C8271;
+  --glass-fill: rgb(255 255 255 / 75%);
+  --glass-fill-strong: rgb(255 255 255 / 88%); /* panels, which must stay readable */
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-border: rgb(255 255 255 / 70%);
+  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 90%);
+  --glass-shadow: 0 8px 32px -8px rgb(20 30 60 / 18%);
+  --glass-shadow-sm: 0 2px 8px -2px rgb(20 30 60 / 14%);
 
-  /* One accent, used sparingly: today, the primary button, an event's bar */
-  --color-accent: #A8442A;
-  --color-accent-soft: #F6E7E0;    /* a tint of the accent, for backgrounds */
-  --color-accent-contrast: #FFFFFF;/* text placed on top of --color-accent */
+  /* Where a surface must be solid rather than glass — the recessed days
+     outside the current month. */
+  --color-sunken: rgb(255 255 255 / 30%);
+
+  /* ---- Text ----------------------------------------------------------
+     Solid, not translucent: these are the colours the contrast figures on
+     the reference page are measured from. */
+
+  --color-ink: #1D1D1F;
+  --color-ink-muted: #55555C;
+
+  /* ---- Accent ---------------------------------------------------------
+     One accent, used sparingly: today, the primary button, an event's bar. */
+
+  --color-accent: #0063CC;
+  --color-accent-contrast: #FFFFFF;
+  --color-accent-soft: rgb(0 99 204 / 12%);
 
   /* Destructive actions only */
-  --color-danger: #9A2B24;
+  --color-danger: #C4261C;
   --color-danger-contrast: #FFFFFF;
 
-  /* ---- Type ----------------------------------------------------------- */
+  /* ---- Type -----------------------------------------------------------
+     The system's own typeface — SF on Apple, Segoe on Windows. No font to
+     download, so the page looks right offline and on first paint. */
 
-  /* A serif for the calendar's voice — month names, day numbers — so it reads
-     like a diary rather than a spreadsheet. A plain sans for everything else. */
-  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino,
-    Georgia, serif;
-  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --text-xs: 0.75rem;    /* 12px — labels, weekday initials */
   --text-sm: 0.875rem;   /* 14px — event titles, times */
@@ -46,12 +66,14 @@
   --text-xl: 1.75rem;    /* 28px — panel headings */
   --text-2xl: 2.5rem;    /* 40px — the month name */
 
-  --leading-tight: 1.2;
-  --leading-normal: 1.55;
+  /* Large text is set tighter, the way the system typeface is designed to be. */
+  --tracking-tight: -0.022em;
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
 
-  /* ---- Space ---------------------------------------------------------- */
+  /* ---- Space ----------------------------------------------------------
+     Everything is a multiple of 4px, so the layout stays in rhythm. */
 
-  /* Everything is a multiple of 4px, so spacing stays in rhythm. */
   --space-1: 0.25rem;   /*  4px */
   --space-2: 0.5rem;    /*  8px */
   --space-3: 0.75rem;   /* 12px */
@@ -61,41 +83,43 @@
   --space-7: 3rem;      /* 48px */
   --space-8: 4rem;      /* 64px */
 
-  /* ---- Shape and depth ------------------------------------------------ */
+  /* ---- Shape ----------------------------------------------------------
+     Generously round — glass has no sharp corners. */
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-
-  /* Low and soft — the design leans on space and type, not on drop shadows. */
-  --shadow-sm: 0 1px 2px rgb(28 25 23 / 6%);
-  --shadow-md: 0 8px 24px -8px rgb(28 25 23 / 18%);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 }
 
-/* ---- Colour: dark ----------------------------------------------------- */
+/* ---- Dark ------------------------------------------------------------- */
 
-/* Only the colours change. Type, space and shape are the same in both. */
+/* Only colours and material change. Type, space and shape are the same. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-paper: #14120F;
-    --color-surface: #1E1B17;
-    --color-surface-sunken: #0E0C0A;
+    --backdrop-base: #08080D;
+    --backdrop-wash-1: #16295C;
+    --backdrop-wash-2: #241246;
+    --backdrop-wash-3: #073039;
 
-    --color-ink: #F2EDE4;
-    --color-ink-muted: #ADA396;
+    /* In the dark the glass is a lit film over the wash rather than a frost. */
+    --glass-fill: rgb(255 255 255 / 10%);
+    --glass-fill-strong: rgb(30 30 36 / 82%);
+    --glass-border: rgb(255 255 255 / 16%);
+    --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 14%);
+    --glass-shadow: 0 8px 32px -8px rgb(0 0 0 / 60%);
+    --glass-shadow-sm: 0 2px 8px -2px rgb(0 0 0 / 50%);
 
-    --color-line: #322D26;
-    --color-line-strong: #7E7566;
+    --color-sunken: rgb(0 0 0 / 22%);
 
-    /* The accent lightens in the dark so it still reads against the page. */
-    --color-accent: #E8926B;
-    --color-accent-soft: #2E211A;
-    --color-accent-contrast: #1A1006;
+    --color-ink: #F5F5F7;
+    --color-ink-muted: #BCBCC6;
 
-    --color-danger: #EE8A80;
-    --color-danger-contrast: #1A1006;
+    --color-accent: #85C0FF;
+    --color-accent-contrast: #06213D;
+    --color-accent-soft: rgb(133 192 255 / 18%);
 
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
-    --shadow-md: 0 8px 24px -8px rgb(0 0 0 / 60%);
+    --color-danger: #FF9A93;
+    --color-danger-contrast: #3A0A06;
   }
 }

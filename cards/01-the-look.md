@@ -27,11 +27,13 @@ components, backed by named design tokens in CSS. Light and dark. No calendar
 on it yet.
 
 ## Design direction
-Quiet editorial. A warm off-white paper background rather than clinical white.
-A serif face for the month name and day numbers so the calendar has character
-instead of looking like an admin grid; a clean sans for everything else. One
-accent colour, used sparingly — today's date, the save button, an event's colour
-bar. Generous space. Soft, low shadows.
+Liquid glass, in the manner of recent Apple interfaces. A soft wash of colour
+sits fixed behind the page — cool blue, soft lilac, warm peach — and everything
+raised above it is made of the same translucent material: a frosted fill that
+blurs whatever is behind it, a bright hairline edge, and a single lit line along
+the top where light catches. Generously rounded corners. The system's own
+typeface, set tight at large sizes. One accent, used sparingly. Dark mode swaps
+the wash for deep blue, violet and teal, and turns the frost into a lit film.
 
 ## Acceptance criteria
 1. There is a page I can open that shows the palette, the typefaces at their real
@@ -52,25 +54,35 @@ _No criterion may be checked off without its verification passing. See the
 `harvest` skill._
 
 ## What was built
-- `styles/tokens.css` — every colour, font, size, space, radius and shadow, by
-  name. The dark palette redefines only the colours; type, space and shape are
-  the same in both.
-- `styles/base.css` — the reset, plain element defaults, one shared focus ring.
-- `styles/components.css` — `.button` (default, primary, danger, icon),
-  `.field` (label, input, error) and `.panel`. Later cards use these classes
-  rather than styling buttons and inputs of their own.
-- `design.html` — the reference page: palette, type at real sizes, the spacing
-  scale to scale, the components as they will actually appear, and a table of
-  the measured contrast ratios.
+- `styles/tokens.css` — every colour, material property, font, size, space and
+  radius, by name. Dark mode redefines only colour and material; type, space and
+  shape are the same in both.
+- `styles/base.css` — the reset, the fixed colour wash behind the page, plain
+  element defaults, one shared focus ring.
+- `styles/components.css` — `.glass` (the material), `.button` (default,
+  primary, danger, icon), `.field` (label, input, error) and `.panel`. Later
+  cards use these rather than styling buttons and inputs of their own.
+- `design.html` — the reference page: the material on show over a busy
+  background, the palette, type at real sizes, the spacing and corner scales,
+  the components as they will actually appear, and the measured contrast table.
 - `styles/design-page.css` — layout for the reference page only. It arranges
   swatches and specimens and invents no colours or type; the calendar itself
   never loads it.
 
-Two colours carry the text: `--color-ink` and `--color-ink-muted`. A third,
-fainter one was tried for the neighbouring-month days and dropped — anything
-faint enough to look different failed the contrast check, and anything that
-passed was too close to `--color-ink-muted` to be worth a name. Those days will
-be set apart by their sunken background instead.
+`.glass` exists as its own class because the calendar card, the buttons and the
+event panel are all the same material — without it, several rules would repeat
+the same five properties and drift apart the moment one changed.
+
+Glass makes contrast a real question, because what sits behind the text varies.
+It is answered by keeping the wash within a known range and the fill dense
+enough that the effective background stays predictable. Every text colour was
+measured against the worst case — the most saturated point of each wash seen
+through the glass — in both themes, and the lowest ratio is 4.9. Where a browser
+does not support the blur, the glass falls back to a solid surface rather than a
+muddy translucent one.
+
+The typeface is the system's own — SF on Apple, Segoe on Windows — so there is
+no font to download and nothing to go wrong offline.
 
 ## Could come later
 A manual light/dark toggle that overrides the system setting. More than one

@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Look — calendar design reference</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&display=swap">
-
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/components.css">
@@ -18,7 +13,7 @@
 <body>
   <main class="doc">
 
-    <header>
+    <header class="doc__header glass">
       <h1>The Look</h1>
       <p class="doc__note">
         The visual language of the calendar, in one place. Everything below is
@@ -28,29 +23,67 @@
       </p>
     </header>
 
+    <!-- ---- Material ---- -->
+    <section class="doc__section glass">
+      <h2 class="doc__section-title">The material</h2>
+      <p class="doc__note">
+        Everything raised is made of the same glass: a translucent fill, a blur
+        that frosts whatever is behind it, a bright hairline edge, and a single
+        lit line along the top where the light catches. It is one class,
+        <code>.glass</code>, so the calendar card, the buttons and the event
+        panel can never drift apart.
+      </p>
+
+      <div class="material">
+        <div class="material__stage">
+          <div class="material__chip glass">
+            <span><code>.glass</code><br>panels, buttons, the calendar itself</span>
+          </div>
+        </div>
+        <div class="material__stage">
+          <div class="material__chip glass glass--strong">
+            <span><code>.glass--strong</code><br>denser, for the event panel</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="doc__note" style="margin-top: var(--space-4)">
+        The colour wash behind the page is what the glass has to refract — it is
+        fixed in place, so the material stays still while the page scrolls. On
+        browsers with no blur support the glass falls back to a solid surface
+        rather than a muddy translucent one.
+      </p>
+    </section>
+
     <!-- ---- Colour ---- -->
-    <section class="doc__section">
+    <section class="doc__section glass">
       <h2 class="doc__section-title">Colour</h2>
       <p class="doc__note">
-        Warm paper rather than white, near-black ink, and a single accent used
-        sparingly — today's date, the save button, an event's colour bar.
+        Three pools of colour wash the backdrop. On top of them, solid ink and a
+        single accent used sparingly — today's date, the save button, an event's
+        colour bar.
       </p>
 
       <div class="swatches">
         <div class="swatch">
-          <div class="swatch__chip" style="background: var(--color-paper)"></div>
-          <span class="swatch__name">--color-paper</span>
-          <span class="swatch__use">The page itself</span>
+          <div class="swatch__chip" style="background: var(--backdrop-base)"></div>
+          <span class="swatch__name">--backdrop-base</span>
+          <span class="swatch__use">The page under the wash</span>
         </div>
         <div class="swatch">
-          <div class="swatch__chip" style="background: var(--color-surface)"></div>
-          <span class="swatch__name">--color-surface</span>
-          <span class="swatch__use">Panels sitting on the page</span>
+          <div class="swatch__chip" style="background: var(--backdrop-wash-1)"></div>
+          <span class="swatch__name">--backdrop-wash-1</span>
+          <span class="swatch__use">Cool blue pool</span>
         </div>
         <div class="swatch">
-          <div class="swatch__chip" style="background: var(--color-surface-sunken)"></div>
-          <span class="swatch__name">--color-surface-sunken</span>
-          <span class="swatch__use">Recessed areas — days outside the month</span>
+          <div class="swatch__chip" style="background: var(--backdrop-wash-2)"></div>
+          <span class="swatch__name">--backdrop-wash-2</span>
+          <span class="swatch__use">Soft lilac pool</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--backdrop-wash-3)"></div>
+          <span class="swatch__name">--backdrop-wash-3</span>
+          <span class="swatch__use">Warm peach pool</span>
         </div>
         <div class="swatch">
           <div class="swatch__chip" style="background: var(--color-ink)"></div>
@@ -63,24 +96,9 @@
           <span class="swatch__use">Secondary text — weekday names, times</span>
         </div>
         <div class="swatch">
-          <div class="swatch__chip" style="background: var(--color-line)"></div>
-          <span class="swatch__name">--color-line</span>
-          <span class="swatch__use">Decorative separators</span>
-        </div>
-        <div class="swatch">
-          <div class="swatch__chip" style="background: var(--color-line-strong)"></div>
-          <span class="swatch__name">--color-line-strong</span>
-          <span class="swatch__use">Outlines of things you interact with</span>
-        </div>
-        <div class="swatch">
           <div class="swatch__chip" style="background: var(--color-accent)"></div>
           <span class="swatch__name">--color-accent</span>
           <span class="swatch__use">Today, primary action, event bars</span>
-        </div>
-        <div class="swatch">
-          <div class="swatch__chip" style="background: var(--color-accent-soft)"></div>
-          <span class="swatch__name">--color-accent-soft</span>
-          <span class="swatch__use">A tint of the accent, for backgrounds</span>
         </div>
         <div class="swatch">
           <div class="swatch__chip" style="background: var(--color-danger)"></div>
@@ -91,49 +109,46 @@
     </section>
 
     <!-- ---- Type ---- -->
-    <section class="doc__section">
+    <section class="doc__section glass">
       <h2 class="doc__section-title">Type</h2>
       <p class="doc__note">
-        A serif for the calendar's own voice — the month name, the day numbers.
-        A plain sans for everything you operate. Both shown here at the exact
-        sizes the app uses.
+        The system's own typeface — SF on a Mac or iPhone, Segoe on Windows.
+        Nothing to download, so it looks right offline and on the very first
+        paint. Large sizes are set tighter, the way the face is designed to be.
+        Shown here at the exact sizes the app uses.
       </p>
 
       <div class="specimen">
-        <span class="specimen__label">--text-2xl · 40px · display · the month name</span>
-        <p class="specimen__text" style="font-size: var(--text-2xl)">September 2026</p>
+        <span class="specimen__label">--text-2xl · 40px · the month name</span>
+        <p class="specimen__text" style="font-size: var(--text-2xl); font-weight: 600">September 2026</p>
       </div>
       <div class="specimen">
-        <span class="specimen__label">--text-xl · 28px · display · panel headings</span>
-        <p class="specimen__text" style="font-size: var(--text-xl)">New event</p>
+        <span class="specimen__label">--text-xl · 28px · panel headings</span>
+        <p class="specimen__text" style="font-size: var(--text-xl); font-weight: 600">New event</p>
       </div>
       <div class="specimen">
-        <span class="specimen__label">--text-lg · 20px · display · day numbers</span>
+        <span class="specimen__label">--text-lg · 20px · day numbers</span>
         <p class="specimen__text" style="font-size: var(--text-lg)">1 2 3 4 5 6 7 8 9 0</p>
       </div>
       <div class="specimen">
-        <span class="specimen__label">--text-base · 16px · UI · body and inputs</span>
-        <p class="specimen__text specimen__text--ui" style="font-size: var(--text-base)">
+        <span class="specimen__label">--text-base · 16px · body and inputs</span>
+        <p class="specimen__text" style="font-size: var(--text-base)">
           Click a day to add something to it.
         </p>
       </div>
       <div class="specimen">
-        <span class="specimen__label">--text-sm · 14px · UI · event titles and times</span>
-        <p class="specimen__text specimen__text--ui" style="font-size: var(--text-sm)">
-          09:30 &nbsp; Dentist
-        </p>
+        <span class="specimen__label">--text-sm · 14px · event titles and times</span>
+        <p class="specimen__text" style="font-size: var(--text-sm)">09:30 &nbsp; Dentist</p>
       </div>
       <div class="specimen">
-        <span class="specimen__label">--text-xs · 12px · UI · labels, weekday initials</span>
-        <p class="specimen__text specimen__text--ui" style="font-size: var(--text-xs)">
-          MON TUE WED THU FRI SAT SUN
-        </p>
+        <span class="specimen__label">--text-xs · 12px · labels, weekday initials</span>
+        <p class="specimen__text" style="font-size: var(--text-xs)">MON TUE WED THU FRI SAT SUN</p>
       </div>
     </section>
 
-    <!-- ---- Space ---- -->
-    <section class="doc__section">
-      <h2 class="doc__section-title">Space</h2>
+    <!-- ---- Space and shape ---- -->
+    <section class="doc__section glass">
+      <h2 class="doc__section-title">Space and shape</h2>
       <p class="doc__note">
         Every gap is a multiple of 4px, so the layout stays in rhythm. Shown to
         scale.
@@ -148,17 +163,29 @@
         <div class="ruler__bar" style="width: var(--space-7)"></div>
         <div class="ruler__bar" style="width: var(--space-8)"></div>
       </div>
-      <p class="doc__note" style="margin-top: var(--space-3)">
+      <p class="doc__note" style="margin: var(--space-3) 0 var(--space-5)">
         --space-1 through --space-8 · 4, 8, 12, 16, 24, 32, 48, 64px
       </p>
+
+      <p class="doc__note">
+        Corners are generously round — glass has no sharp edges. Small for
+        buttons and inputs, large for cards, extra large for the event panel.
+      </p>
+      <div class="row">
+        <div class="glass" style="width: 90px; height: 64px; border-radius: var(--radius-sm)"></div>
+        <div class="glass" style="width: 90px; height: 64px; border-radius: var(--radius-md)"></div>
+        <div class="glass" style="width: 90px; height: 64px; border-radius: var(--radius-lg)"></div>
+        <div class="glass" style="width: 90px; height: 64px; border-radius: var(--radius-xl)"></div>
+      </div>
     </section>
 
-    <!-- ---- Components ---- -->
-    <section class="doc__section">
+    <!-- ---- Buttons ---- -->
+    <section class="doc__section glass">
       <h2 class="doc__section-title">Buttons</h2>
       <p class="doc__note">
-        One primary button is visible at a time — the single action that matters
-        on screen. Everything else is quiet.
+        Quiet buttons are glass and lift towards the light when you point at
+        them. The one action that matters is solid accent. One primary button is
+        visible at a time.
       </p>
       <div class="row">
         <button class="button button--primary" type="button">Save event</button>
@@ -169,12 +196,14 @@
       </div>
     </section>
 
-    <section class="doc__section">
+    <!-- ---- Text boxes ---- -->
+    <section class="doc__section glass">
       <h2 class="doc__section-title">Text boxes</h2>
       <p class="doc__note">
-        A label above, the box, and room underneath for an error. An invalid box
-        is marked by its outline <em>and</em> by the message, never by colour
-        alone.
+        Inputs are recessed rather than raised — the one place the design goes
+        into the glass instead of sitting on it, so it reads as somewhere to type
+        rather than something to press. An invalid box is marked by its outline
+        <em>and</em> by the message, never by colour alone.
       </p>
       <div class="stack">
         <div class="field">
@@ -194,13 +223,14 @@
       </div>
     </section>
 
-    <section class="doc__section">
+    <!-- ---- Panel ---- -->
+    <section class="doc__section glass">
       <h2 class="doc__section-title">Panel</h2>
       <p class="doc__note">
         The raised surface an event is added or edited in, shown here exactly as
         it will appear.
       </p>
-      <div class="panel" style="max-width: 420px">
+      <div class="glass glass--strong panel" style="max-width: 420px">
         <h2 class="panel__title">New event</h2>
         <p class="panel__subtitle">Tuesday 15 September</p>
         <div class="stack">
@@ -223,26 +253,27 @@
     </section>
 
     <!-- ---- Contrast ---- -->
-    <section class="doc__section">
+    <section class="doc__section glass">
       <h2 class="doc__section-title">Contrast</h2>
       <p class="doc__note">
-        Every text colour is legible on every background it is actually used on.
-        The figures below are the measured ratios in light mode; dark mode is
-        higher in every case. Normal text needs 4.5, interactive outlines need 3.
+        Glass makes contrast a real question, because what is behind the text
+        changes. It is answered by keeping the colour wash pale and the glass
+        dense enough that the effective background stays within a known range —
+        the figures below are measured against the worst case, the most
+        saturated point of the wash seen through the glass, in both themes.
+        Normal text needs 4.5, and every pair clears it.
       </p>
       <table class="contrast">
         <thead>
-          <tr><th>Foreground</th><th>On</th><th>Ratio</th><th>Needs</th></tr>
+          <tr><th>Foreground</th><th>On</th><th>Light</th><th>Dark</th><th>Needs</th></tr>
         </thead>
         <tbody>
-          <tr><td>--color-ink</td><td>--color-paper</td><td>16.4</td><td>4.5</td></tr>
-          <tr><td>--color-ink</td><td>--color-surface-sunken</td><td>15.0</td><td>4.5</td></tr>
-          <tr><td>--color-ink-muted</td><td>--color-paper</td><td>5.5</td><td>4.5</td></tr>
-          <tr><td>--color-ink-muted</td><td>--color-surface-sunken</td><td>5.1</td><td>4.5</td></tr>
-          <tr><td>--color-accent</td><td>--color-paper</td><td>5.6</td><td>4.5</td></tr>
-          <tr><td>--color-accent-contrast</td><td>--color-accent</td><td>6.0</td><td>4.5</td></tr>
-          <tr><td>--color-danger</td><td>--color-paper</td><td>7.2</td><td>4.5</td></tr>
-          <tr><td>--color-line-strong</td><td>--color-paper</td><td>3.5</td><td>3.0</td></tr>
+          <tr><td>--color-ink</td><td>glass, worst case</td><td>14.4</td><td>9.6</td><td>4.5</td></tr>
+          <tr><td>--color-ink-muted</td><td>glass, worst case</td><td>6.3</td><td>5.5</td><td>4.5</td></tr>
+          <tr><td>--color-accent</td><td>glass, worst case</td><td>4.9</td><td>5.4</td><td>4.5</td></tr>
+          <tr><td>--color-danger</td><td>glass, worst case</td><td>4.9</td><td>5.1</td><td>4.5</td></tr>
+          <tr><td>--color-accent-contrast</td><td>--color-accent</td><td>5.7</td><td>8.5</td><td>4.5</td></tr>
+          <tr><td>--color-danger-contrast</td><td>--color-danger</td><td>5.8</td><td>8.4</td><td>4.5</td></tr>
         </tbody>
       </table>
     </section>

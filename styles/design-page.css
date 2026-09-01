@@ -3,19 +3,25 @@
    The calendar itself never loads this file. */
 
 .doc {
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
   padding: var(--space-8) var(--space-5);
 }
 
+.doc__header {
+  margin-bottom: var(--space-6);
+  padding: var(--space-6);
+}
+
+/* Each section is itself a piece of glass, so the material is on show
+   everywhere rather than only in the components box. */
 .doc__section {
-  margin-bottom: var(--space-8);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-line);
+  margin-bottom: var(--space-6);
+  padding: var(--space-6);
 }
 
 .doc__section-title {
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .doc__note {
@@ -25,13 +31,13 @@
 
 .swatches {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: var(--space-4);
 }
 
 .swatch__chip {
   height: 72px;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
 }
 
@@ -47,8 +53,40 @@
   font-size: var(--text-xs);
 }
 
+/* Shows the material itself: a chip of glass with something busy behind it,
+   so you can see it frost and refract rather than just look pale. */
+.material {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.material__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(50% 70% at 20% 30%, var(--backdrop-wash-1), transparent),
+    radial-gradient(50% 70% at 80% 70%, var(--backdrop-wash-3), transparent),
+    var(--backdrop-base);
+}
+
+.material__chip {
+  display: grid;
+  place-items: center;
+  width: 82%;
+  min-height: 84px;
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
 .specimen {
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .specimen__label {
@@ -62,12 +100,8 @@
 
 .specimen__text {
   margin: 0;
-  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
-}
-
-.specimen__text--ui {
-  font-family: var(--font-ui);
 }
 
 .row {
@@ -91,7 +125,7 @@
 }
 
 .ruler__bar {
-  height: 16px;
+  height: 14px;
   border-radius: var(--radius-sm);
   background: var(--color-accent);
 }
@@ -105,7 +139,7 @@
 .contrast th,
 .contrast td {
   padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--glass-border);
   text-align: left;
 }
 

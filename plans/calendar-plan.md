@@ -45,22 +45,27 @@ a remote before step 1 if you want real PRs from the start.
 - **Goal:** A page you can open that shows the calendar's visual language —
   palette, type at real sizes, and the button, text box and panel as they will
   actually appear — in both light and dark.
-- **Technical notes:** `styles/tokens.css` holds every colour, font family, font
-  size, spacing step, radius and shadow as CSS custom properties on `:root`,
-  with a `@media (prefers-color-scheme: dark)` block redefining only the colour
-  tokens. `styles/base.css` holds the reset and element defaults;
-  `styles/components.css` holds `.button`, `.field`, `.panel`. `design.html` is
-  the reference page and imports exactly those files — no styles of its own.
-  Fonts: a serif display face and a sans UI face, each with a real system
-  fallback stack, so the page still works offline. No JavaScript in this step.
+- **Technical notes:** `styles/tokens.css` holds every colour, material
+  property, font, size, spacing step and radius as CSS custom properties on
+  `:root`, with a `@media (prefers-color-scheme: dark)` block redefining only
+  colour and material. `styles/base.css` holds the reset, the fixed colour wash
+  and element defaults; `styles/components.css` holds `.glass`, `.button`,
+  `.field` and `.panel`. `design.html` is the reference page. No JavaScript in
+  this step.
 - **Done when:** 🎨 criteria 1–4.
-- **Built:** as planned, with two changes. The reference page has a small
-  stylesheet of its own (`styles/design-page.css`) for laying out swatches and
-  specimens — it invents no colours or type and the app never loads it; inline
-  layout styles would have been worse to read. And `html { color-scheme: light
-  dark }` was added so the browser's own controls, like the time picker, follow
-  the theme. The display serif is Fraunces, loaded from Google Fonts, over a
-  system serif fallback stack.
+- **Built:** the design direction changed during this step, from a quiet
+  editorial look to liquid glass in the manner of recent Apple interfaces. The
+  card's acceptance criteria were unaffected — they describe observable
+  behaviour, not a particular style — so nothing had to be renegotiated. The
+  material lives in one class, `.glass`, shared by the calendar card, the
+  buttons and the event panel. The reference page has a small stylesheet of its
+  own (`styles/design-page.css`) for laying out swatches and specimens; it
+  invents no colours or type and the app never loads it. `html { color-scheme:
+  light dark }` was added so the browser's own controls, like the time picker,
+  follow the theme. The typeface is the system's own, so there is no web font
+  dependency. Contrast was measured against the worst case — the most saturated
+  point of the wash seen through the glass — in both themes; the lowest ratio is
+  4.9 against a floor of 4.5.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 
@@ -154,9 +159,9 @@ Feature PR: <trellis> — `feature/calendar` → `main` (user merges)
   the design foundation is used consistently, is readable and is accessible —
   they cannot prove you like it. Step 1 exists first precisely so you can look
   at the direction and reject it while it is cheap.
-- **Web fonts.** If the serif and sans come from a font service, the page needs
-  a network connection to look right. Real fallback stacks keep it decent
-  offline; if that matters, the fallback becomes the choice.
+- **Glass depends on `backdrop-filter`.** Every current browser supports it, but
+  where it is missing the material falls back to a solid surface and the design
+  loses its defining effect. The layout still works.
 - **Browser storage is per-browser and per-machine**, and can be cleared by the
   user or the browser. This is understood and accepted for the first version.
 
