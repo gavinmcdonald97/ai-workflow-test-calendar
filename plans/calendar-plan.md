@@ -196,7 +196,13 @@ Card PRs, merge order bottom-up into the project trunk:
 5. [#6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) — 💾 Events That Stick Around (in review)
 6. [#7](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/7) — 🗑️ Changing Your Mind (in review)
 
-Feature PR: <trellis> — `feature/calendar` → `main` (user merges)
+Feature PR: **not opened.** The six card PRs above stand on their own, each
+reviewable by itself with its own red→green evidence. They have not been merged
+into `feature/calendar`, so the project trunk still holds only `cards/` and
+`plans/` — a `feature/calendar` → `main` PR would show no code. To finish the
+workflow later: merge the card PRs bottom-up into `feature/calendar` (#1, #2,
+#3, #5, #6, #7, retargeting each as the one below lands), then open one
+`feature/calendar` → `main` PR for review.
 
 ## Risks / unknowns
 - **No git remote.** Trellis can only do its local half until one exists. Worth
