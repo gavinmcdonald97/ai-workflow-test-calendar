@@ -146,6 +146,14 @@ a remote before step 1 if you want real PRs from the start.
   change. Step 4's in-memory list becomes the thing that is loaded at startup
   and saved on change; nothing else about step 4 changes.
 - **Done when:** 💾 criteria 1–4.
+- **Built:** storage sits in `js/events.js` rather than a module of its own —
+  the plan suggested separating it, but load and save are used only by the
+  events and the file is still short enough to read in one go. Caught a mistake
+  while writing it: the events list was initialised above the `const` holding
+  the storage key, which throws, because `const` is not hoisted the way a
+  function declaration is. Criterion 3 depends on deleting, which card 6
+  delivers; what belongs to this card — that saving writes the whole list rather
+  than appending — is proved here.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 

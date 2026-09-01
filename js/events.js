@@ -3,9 +3,76 @@
 // Loaded before calendar.js, because the grid asks this file what is on each
 // day while it draws.
 
-// Every event, in memory. 💾 Events That Stick Around will make this survive a
-// reload; for now it lasts as long as the page is open.
-let events = [];
+// ---------------------------------------------------------------------------
+// 💾 Events That Stick Around
+//
+// Kept in this browser, on this machine, under one key. No account, no server,
+// no syncing between devices.
+// ---------------------------------------------------------------------------
+
+// Versioned, so that if the shape of an event ever changes, old data can be
+// recognised rather than silently misread.
+const STORAGE_KEY = "calendar.events.v1";
+
+/**
+ * Everything saved last time, or an empty calendar.
+ *
+ * Anything unreadable gives an empty calendar rather than a broken page: the
+ * stored text can be absent, not be JSON at all, or be JSON of the wrong shape,
+ * and none of those should stop the calendar opening.
+ */
+function loadEvents() {
+  let stored;
+  try {
+    stored = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    // Storage can be blocked entirely — private browsing, or site data turned
+    // off. The calendar still works, it just won't remember anything.
+    return [];
+  }
+
+  if (stored === null) return [];
+
+  let parsed;
+  try {
+    parsed = JSON.parse(stored);
+  } catch {
+    return [];
+  }
+
+  if (!Array.isArray(parsed)) return [];
+
+  // One bad entry loses that entry, not the whole calendar.
+  return parsed.filter(isEvent);
+}
+
+/** Whether something read back from storage is really an event. */
+function isEvent(value) {
+  return (
+    value !== null &&
+    typeof value === "object" &&
+    typeof value.id === "string" &&
+    typeof value.title === "string" &&
+    typeof value.date === "string" &&
+    /^\d{4}-\d{2}-\d{2}$/.test(value.date) &&
+    typeof value.time === "string" &&
+    /^\d{2}:\d{2}$/.test(value.time)
+  );
+}
+
+/** Writes the whole list back, so removals are saved as well as additions. */
+function saveEvents() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+  } catch {
+    // Storage can be full or blocked. Losing the save is better than losing
+    // the page.
+  }
+}
+
+// Every event. Loaded from the browser's storage when the page opens, and
+// written back after every change.
+let events = loadEvents();
 
 /** The events on one day ("2026-09-15"), earliest first. */
 function eventsOn(date) {
@@ -105,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
       title: name,
     });
 
+    saveEvents();
     panel.close();
     showMonth(shownYear, shownMonth); // Redraw, so the new event appears.
   });
