@@ -182,7 +182,7 @@ a remote before step 1 if you want real PRs from the start.
   criteria proved red→green. Criterion 5 is a negative claim and needed two
   separate breaks. This step also closes out step 5's criterion 3 end to end,
   now that deleting exists.
-- **PR:** <trellis>
+- **PR:** [#7](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/7) — `calendar/06-changing-your-mind` → `calendar/05-events-that-stick-around`
 
 ## Stack
 Project trunk: `feature/calendar` (from `main`).
@@ -194,7 +194,7 @@ Card PRs, merge order bottom-up into the project trunk:
 3. [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — ⏭️ Moving Between Months (in review)
 4. [#5](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/5) — ✍️ Adding an Event (in review)
 5. [#6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) — 💾 Events That Stick Around (in review)
-6. <trellis> — 🗑️ Changing Your Mind
+6. [#7](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/7) — 🗑️ Changing Your Mind (in review)
 
 Feature PR: <trellis> — `feature/calendar` → `main` (user merges)
 

@@ -1,7 +1,7 @@
 # 🗑️ Changing Your Mind
 
-**Status:** done
-**Branch / PR:** <filled by trellis>
+**Status:** in-review
+**Branch / PR:** `calendar/06-changing-your-mind` · [PR #7](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/7) → `calendar/05-events-that-stick-around`
 
 ## What it is
 Clicking an event you already made to change its title or time, or to delete it.
