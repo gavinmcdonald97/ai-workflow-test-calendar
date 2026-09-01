@@ -33,7 +33,7 @@
 
   <dialog class="glass glass--strong panel" id="event-panel">
     <form id="event-form">
-      <h2 class="panel__title">New event</h2>
+      <h2 class="panel__title" id="event-panel-title">New event</h2>
       <p class="panel__subtitle" id="event-panel-day"></p>
 
       <div class="panel__fields">
@@ -51,10 +51,20 @@
         </div>
       </div>
 
-      <div class="panel__actions">
+      <div class="panel__actions" id="event-actions">
+        <button class="button button--danger" id="event-delete" type="button" hidden>Delete</button>
         <span class="panel__actions-spacer"></span>
         <button class="button" id="event-cancel" type="button">Cancel</button>
         <button class="button button--primary" type="submit">Save</button>
+      </div>
+
+      <div class="panel__confirm" id="event-delete-confirm" hidden>
+        <p class="panel__confirm-question">Delete this event?</p>
+        <div class="panel__actions">
+          <span class="panel__actions-spacer"></span>
+          <button class="button" id="event-delete-keep" type="button">Keep it</button>
+          <button class="button button--danger" id="event-delete-really" type="button">Delete</button>
+        </div>
       </div>
     </form>
   </dialog>

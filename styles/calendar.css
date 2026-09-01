@@ -51,9 +51,6 @@
   text-transform: uppercase;
 }
 
-/* A button, so a day can be opened from the keyboard as well as the mouse.
-   The browser's own button look is cleared; everything else comes from The
-   Look's tokens. */
 .day {
   display: flex;
   flex-direction: column;
@@ -64,18 +61,32 @@
   border-radius: var(--radius-md);
   background: var(--color-sunken);
   color: var(--color-ink);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
   transition: background-color 120ms ease;
 }
 
-.day:hover {
+/* The surface you press to add an event. It grows to fill whatever the events
+   leave — so an empty day is one big target — but it holds the day's number and
+   so never shrinks away entirely, which keeps a full day addable. */
+.day__add {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  /* A button resets colour and type to the browser's own; put The Look's back. */
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.day:has(.day__add:hover) {
   background: var(--color-accent-soft);
 }
 
 .day__number {
-  align-self: flex-end;
+  align-self: flex-start;
   font-size: var(--text-lg);
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--tracking-tight);
@@ -103,7 +114,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-end;
+  align-self: flex-start;
   min-width: 1.9em;
   height: 1.9em;
   border-radius: 50%;
@@ -131,11 +142,21 @@
   flex-direction: column;
   min-width: 0;
   padding: var(--space-1);
+  border: 0;
   border-left: 3px solid var(--color-accent);
   border-radius: var(--radius-sm);
   background: var(--color-accent-soft);
+  color: var(--color-ink);
+  font: inherit;
   font-size: var(--text-xs);
   line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition: filter 120ms ease;
+}
+
+.event:hover {
+  filter: brightness(0.94);
 }
 
 .event__time {

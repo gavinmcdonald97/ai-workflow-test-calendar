@@ -186,6 +186,18 @@
   margin-left: auto;
 }
 
+/* The "are you sure" step, which replaces the normal buttons rather than
+   sitting beside them — so there is never a Delete and a Save to choose between
+   at the same moment. */
+.panel__confirm {
+  margin-top: var(--space-6);
+}
+
+.panel__confirm-question {
+  margin: 0;
+  font-weight: 600;
+}
+
 /* A panel shown as a dialog. The browser handles focus, Escape and the
    backdrop; all this does is size it and dim what is behind. */
 dialog.panel {
