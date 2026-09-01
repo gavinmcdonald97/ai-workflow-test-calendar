@@ -158,7 +158,7 @@ a remote before step 1 if you want real PRs from the start.
   corruption tests had to be strengthened: asserting no chips were drawn passed
   for the wrong reason, because a malformed entry has no usable date and never
   draws one anyway. They now assert nothing was loaded.
-- **PR:** <trellis>
+- **PR:** [#6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) — `calendar/05-events-that-stick-around` → `calendar/04-adding-an-event`
 
 ### Step 6 — Edit and delete an event · Card: 🗑️ Changing Your Mind
 - **Goal:** Clicking an existing event opens it prefilled; saving updates it in
@@ -183,7 +183,7 @@ Card PRs, merge order bottom-up into the project trunk:
 2. [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — 🗓️ The Month Grid (in review)
 3. [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — ⏭️ Moving Between Months (in review)
 4. [#5](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/5) — ✍️ Adding an Event (in review)
-5. <trellis> — 💾 Events That Stick Around
+5. [#6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) — 💾 Events That Stick Around (in review)
 6. <trellis> — 🗑️ Changing Your Mind
 
 Feature PR: <trellis> — `feature/calendar` → `main` (user merges)

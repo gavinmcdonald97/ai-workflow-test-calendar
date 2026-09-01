@@ -1,7 +1,7 @@
 # 💾 Events That Stick Around
 
-**Status:** done
-**Branch / PR:** <filled by trellis>
+**Status:** in-review
+**Branch / PR:** `calendar/05-events-that-stick-around` · [PR #6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) → `calendar/04-adding-an-event`
 
 ## What it is
 Your events are still there when you close the tab and come back tomorrow.
