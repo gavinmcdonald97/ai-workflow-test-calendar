@@ -110,7 +110,8 @@ a remote before step 1 if you want real PRs from the start.
   today was marked wherever it appeared, so viewing August circled the 1st of
   September in its trailing row. Today is now only marked when it belongs to the
   month being shown.
-- **Verified by:** <harvest>
+- **Verified by:** `tests/03-moving-between-months.spec.js` — 6 tests, all five
+  criteria proved red→green, driving the real buttons.
 - **PR:** <trellis>
 
 ### Step 4 — Add an event to a day · Card: ✍️ Adding an Event
