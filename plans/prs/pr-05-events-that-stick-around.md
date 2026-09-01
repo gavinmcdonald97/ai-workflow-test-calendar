@@ -81,7 +81,7 @@ On `feature/calendar`, merged bottom-up into it. GitHub shares its numbering bet
 3. #3 — ⏭️ Moving Between Months
 4. #5 — ✍️ Adding an Event
 5. **💾 Events That Stick Around ← you are here**
-6. 🗑️ Changing Your Mind — not built yet
+6. #7 — 🗑️ Changing Your Mind
 
 Then one feature PR `feature/calendar` → `main` for the maintainer to review and merge.
 
