@@ -1,6 +1,6 @@
 # 🎨 The Look
 
-**Status:** understood
+**Status:** building
 **Branch / PR:** <filled by trellis>
 
 ## What it is
@@ -50,6 +50,27 @@ bar. Generous space. Soft, low shadows.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._
+
+## What was built
+- `styles/tokens.css` — every colour, font, size, space, radius and shadow, by
+  name. The dark palette redefines only the colours; type, space and shape are
+  the same in both.
+- `styles/base.css` — the reset, plain element defaults, one shared focus ring.
+- `styles/components.css` — `.button` (default, primary, danger, icon),
+  `.field` (label, input, error) and `.panel`. Later cards use these classes
+  rather than styling buttons and inputs of their own.
+- `design.html` — the reference page: palette, type at real sizes, the spacing
+  scale to scale, the components as they will actually appear, and a table of
+  the measured contrast ratios.
+- `styles/design-page.css` — layout for the reference page only. It arranges
+  swatches and specimens and invents no colours or type; the calendar itself
+  never loads it.
+
+Two colours carry the text: `--color-ink` and `--color-ink-muted`. A third,
+fainter one was tried for the neighbouring-month days and dropped — anything
+faint enough to look different failed the contrast check, and anything that
+passed was too close to `--color-ink-muted` to be worth a name. Those days will
+be set apart by their sunken background instead.
 
 ## Could come later
 A manual light/dark toggle that overrides the system setting. More than one

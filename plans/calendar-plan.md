@@ -54,6 +54,13 @@ a remote before step 1 if you want real PRs from the start.
   Fonts: a serif display face and a sans UI face, each with a real system
   fallback stack, so the page still works offline. No JavaScript in this step.
 - **Done when:** 🎨 criteria 1–4.
+- **Built:** as planned, with two changes. The reference page has a small
+  stylesheet of its own (`styles/design-page.css`) for laying out swatches and
+  specimens — it invents no colours or type and the app never loads it; inline
+  layout styles would have been worse to read. And `html { color-scheme: light
+  dark }` was added so the browser's own controls, like the time picker, follow
+  the theme. The display serif is Fraunces, loaded from Google Fonts, over a
+  system serif fallback stack.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 

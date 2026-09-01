@@ -1,0 +1,118 @@
+/* Layout for design.html only — the reference page is not part of the app.
+   It arranges the swatches and specimens; it invents no colours or type.
+   The calendar itself never loads this file. */
+
+.doc {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5);
+}
+
+.doc__section {
+  margin-bottom: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
+}
+
+.doc__section-title {
+  margin-bottom: var(--space-5);
+}
+
+.doc__note {
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.swatch__chip {
+  height: 72px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.swatch__name {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.swatch__use {
+  display: block;
+  color: var(--color-ink-muted);
+  font-size: var(--text-xs);
+}
+
+.specimen {
+  margin-bottom: var(--space-5);
+}
+
+.specimen__label {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--color-ink-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.specimen__text {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+}
+
+.specimen__text--ui {
+  font-family: var(--font-ui);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 420px;
+}
+
+.ruler {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ruler__bar {
+  height: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+}
+
+.contrast {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.contrast th,
+.contrast td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+}
+
+.contrast th {
+  color: var(--color-ink-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Look — calendar design reference</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&display=swap">
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/design-page.css">
+</head>
+<body>
+  <main class="doc">
+
+    <header>
+      <h1>The Look</h1>
+      <p class="doc__note">
+        The visual language of the calendar, in one place. Everything below is
+        defined by name in <code>styles/tokens.css</code>; later parts of the app
+        use those names rather than choosing colours or sizes of their own.
+        Switch your computer between light and dark mode — this page follows it.
+      </p>
+    </header>
+
+    <!-- ---- Colour ---- -->
+    <section class="doc__section">
+      <h2 class="doc__section-title">Colour</h2>
+      <p class="doc__note">
+        Warm paper rather than white, near-black ink, and a single accent used
+        sparingly — today's date, the save button, an event's colour bar.
+      </p>
+
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-paper)"></div>
+          <span class="swatch__name">--color-paper</span>
+          <span class="swatch__use">The page itself</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-surface)"></div>
+          <span class="swatch__name">--color-surface</span>
+          <span class="swatch__use">Panels sitting on the page</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-surface-sunken)"></div>
+          <span class="swatch__name">--color-surface-sunken</span>
+          <span class="swatch__use">Recessed areas — days outside the month</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-ink)"></div>
+          <span class="swatch__name">--color-ink</span>
+          <span class="swatch__use">Primary text</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-ink-muted)"></div>
+          <span class="swatch__name">--color-ink-muted</span>
+          <span class="swatch__use">Secondary text — weekday names, times</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-line)"></div>
+          <span class="swatch__name">--color-line</span>
+          <span class="swatch__use">Decorative separators</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-line-strong)"></div>
+          <span class="swatch__name">--color-line-strong</span>
+          <span class="swatch__use">Outlines of things you interact with</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-accent)"></div>
+          <span class="swatch__name">--color-accent</span>
+          <span class="swatch__use">Today, primary action, event bars</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-accent-soft)"></div>
+          <span class="swatch__name">--color-accent-soft</span>
+          <span class="swatch__use">A tint of the accent, for backgrounds</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch__chip" style="background: var(--color-danger)"></div>
+          <span class="swatch__name">--color-danger</span>
+          <span class="swatch__use">Destructive actions only</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---- Type ---- -->
+    <section class="doc__section">
+      <h2 class="doc__section-title">Type</h2>
+      <p class="doc__note">
+        A serif for the calendar's own voice — the month name, the day numbers.
+        A plain sans for everything you operate. Both shown here at the exact
+        sizes the app uses.
+      </p>
+
+      <div class="specimen">
+        <span class="specimen__label">--text-2xl · 40px · display · the month name</span>
+        <p class="specimen__text" style="font-size: var(--text-2xl)">September 2026</p>
+      </div>
+      <div class="specimen">
+        <span class="specimen__label">--text-xl · 28px · display · panel headings</span>
+        <p class="specimen__text" style="font-size: var(--text-xl)">New event</p>
+      </div>
+      <div class="specimen">
+        <span class="specimen__label">--text-lg · 20px · display · day numbers</span>
+        <p class="specimen__text" style="font-size: var(--text-lg)">1 2 3 4 5 6 7 8 9 0</p>
+      </div>
+      <div class="specimen">
+        <span class="specimen__label">--text-base · 16px · UI · body and inputs</span>
+        <p class="specimen__text specimen__text--ui" style="font-size: var(--text-base)">
+          Click a day to add something to it.
+        </p>
+      </div>
+      <div class="specimen">
+        <span class="specimen__label">--text-sm · 14px · UI · event titles and times</span>
+        <p class="specimen__text specimen__text--ui" style="font-size: var(--text-sm)">
+          09:30 &nbsp; Dentist
+        </p>
+      </div>
+      <div class="specimen">
+        <span class="specimen__label">--text-xs · 12px · UI · labels, weekday initials</span>
+        <p class="specimen__text specimen__text--ui" style="font-size: var(--text-xs)">
+          MON TUE WED THU FRI SAT SUN
+        </p>
+      </div>
+    </section>
+
+    <!-- ---- Space ---- -->
+    <section class="doc__section">
+      <h2 class="doc__section-title">Space</h2>
+      <p class="doc__note">
+        Every gap is a multiple of 4px, so the layout stays in rhythm. Shown to
+        scale.
+      </p>
+      <div class="ruler">
+        <div class="ruler__bar" style="width: var(--space-1)"></div>
+        <div class="ruler__bar" style="width: var(--space-2)"></div>
+        <div class="ruler__bar" style="width: var(--space-3)"></div>
+        <div class="ruler__bar" style="width: var(--space-4)"></div>
+        <div class="ruler__bar" style="width: var(--space-5)"></div>
+        <div class="ruler__bar" style="width: var(--space-6)"></div>
+        <div class="ruler__bar" style="width: var(--space-7)"></div>
+        <div class="ruler__bar" style="width: var(--space-8)"></div>
+      </div>
+      <p class="doc__note" style="margin-top: var(--space-3)">
+        --space-1 through --space-8 · 4, 8, 12, 16, 24, 32, 48, 64px
+      </p>
+    </section>
+
+    <!-- ---- Components ---- -->
+    <section class="doc__section">
+      <h2 class="doc__section-title">Buttons</h2>
+      <p class="doc__note">
+        One primary button is visible at a time — the single action that matters
+        on screen. Everything else is quiet.
+      </p>
+      <div class="row">
+        <button class="button button--primary" type="button">Save event</button>
+        <button class="button" type="button">Cancel</button>
+        <button class="button button--danger" type="button">Delete</button>
+        <button class="button button--icon" type="button" aria-label="Previous month">&#8592;</button>
+        <button class="button button--icon" type="button" aria-label="Next month">&#8594;</button>
+      </div>
+    </section>
+
+    <section class="doc__section">
+      <h2 class="doc__section-title">Text boxes</h2>
+      <p class="doc__note">
+        A label above, the box, and room underneath for an error. An invalid box
+        is marked by its outline <em>and</em> by the message, never by colour
+        alone.
+      </p>
+      <div class="stack">
+        <div class="field">
+          <label class="field__label" for="demo-title">Title</label>
+          <input class="field__input" id="demo-title" type="text" placeholder="Dentist">
+        </div>
+        <div class="field">
+          <label class="field__label" for="demo-time">Time</label>
+          <input class="field__input" id="demo-time" type="time" value="09:30">
+        </div>
+        <div class="field">
+          <label class="field__label" for="demo-invalid">Title</label>
+          <input class="field__input" id="demo-invalid" type="text"
+                 aria-invalid="true" aria-describedby="demo-invalid-error">
+          <p class="field__error" id="demo-invalid-error">Give the event a name.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc__section">
+      <h2 class="doc__section-title">Panel</h2>
+      <p class="doc__note">
+        The raised surface an event is added or edited in, shown here exactly as
+        it will appear.
+      </p>
+      <div class="panel" style="max-width: 420px">
+        <h2 class="panel__title">New event</h2>
+        <p class="panel__subtitle">Tuesday 15 September</p>
+        <div class="stack">
+          <div class="field">
+            <label class="field__label" for="panel-title">Title</label>
+            <input class="field__input" id="panel-title" type="text" placeholder="Dentist">
+          </div>
+          <div class="field">
+            <label class="field__label" for="panel-time">Time</label>
+            <input class="field__input" id="panel-time" type="time" value="09:30">
+          </div>
+        </div>
+        <div class="panel__actions">
+          <button class="button button--danger" type="button">Delete</button>
+          <span class="panel__actions-spacer"></span>
+          <button class="button" type="button">Cancel</button>
+          <button class="button button--primary" type="button">Save</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---- Contrast ---- -->
+    <section class="doc__section">
+      <h2 class="doc__section-title">Contrast</h2>
+      <p class="doc__note">
+        Every text colour is legible on every background it is actually used on.
+        The figures below are the measured ratios in light mode; dark mode is
+        higher in every case. Normal text needs 4.5, interactive outlines need 3.
+      </p>
+      <table class="contrast">
+        <thead>
+          <tr><th>Foreground</th><th>On</th><th>Ratio</th><th>Needs</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>--color-ink</td><td>--color-paper</td><td>16.4</td><td>4.5</td></tr>
+          <tr><td>--color-ink</td><td>--color-surface-sunken</td><td>15.0</td><td>4.5</td></tr>
+          <tr><td>--color-ink-muted</td><td>--color-paper</td><td>5.5</td><td>4.5</td></tr>
+          <tr><td>--color-ink-muted</td><td>--color-surface-sunken</td><td>5.1</td><td>4.5</td></tr>
+          <tr><td>--color-accent</td><td>--color-paper</td><td>5.6</td><td>4.5</td></tr>
+          <tr><td>--color-accent-contrast</td><td>--color-accent</td><td>6.0</td><td>4.5</td></tr>
+          <tr><td>--color-danger</td><td>--color-paper</td><td>7.2</td><td>4.5</td></tr>
+          <tr><td>--color-line-strong</td><td>--color-paper</td><td>3.5</td><td>3.0</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</body>
+</html>
