@@ -105,7 +105,7 @@ On `feature/calendar`, merged bottom-up into it:
 3. **⏭️ Moving Between Months ← you are here**
 4. #5 — ✍️ Adding an Event
 5. #6 — 💾 Events That Stick Around
-6. 🗑️ Changing Your Mind — not built yet
+6. #7 — 🗑️ Changing Your Mind
 
 Then one feature PR `feature/calendar` → `main` for the maintainer to review and merge.
 
