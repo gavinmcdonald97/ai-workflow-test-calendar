@@ -1,7 +1,7 @@
 # 🗓️ The Month Grid
 
-**Status:** done
-**Branch / PR:** <filled by trellis>
+**Status:** in-review
+**Branch / PR:** `calendar/02-the-month-grid` · [PR #2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) → `calendar/01-the-look`
 
 ## What it is
 One page of a calendar: a single month laid out on screen, with the right days
