@@ -92,39 +92,52 @@ function renderMonth(year, month, today = new Date()) {
 
   grid.replaceChildren(
     ...monthGrid(year, month).map(({ date, inMonth }) => {
-      // A button, not a plain box, so a day can be reached and opened with the
-      // keyboard as well as the mouse.
-      const day = document.createElement("button");
-      day.type = "button";
+      const dateKey = toDateKey(date);
+
+      const day = document.createElement("div");
       day.className = "day";
       if (!inMonth) day.classList.add("day--outside");
       // Only when it belongs to the month being shown: a neighbouring-month
       // day is out of scope, so viewing August must not circle the 1st of
       // September sitting in its trailing row.
       if (inMonth && isSameDay(date, today)) day.classList.add("day--today");
+      day.dataset.date = dateKey;
 
-      day.dataset.date = toDateKey(date);
-      day.setAttribute("aria-label", `Add an event on ${formatDayLong(day.dataset.date)}`);
+      // The cell is two things: a surface you press to add an event, and the
+      // events themselves, which you press to change. They are siblings, not
+      // nested — a button inside a button is not allowed.
+      //
+      // The day's number lives inside the add surface. That is what keeps a
+      // busy day usable: as events fill the cell the add surface shrinks, but
+      // never below the number, so there is always somewhere to press to add
+      // one more.
+      const add = document.createElement("button");
+      add.type = "button";
+      add.className = "day__add";
+      add.setAttribute("aria-label", `Add an event on ${formatDayLong(dateKey)}`);
 
       const number = document.createElement("span");
       number.className = "day__number";
       number.textContent = date.getDate();
+      add.append(number);
 
-      day.append(number, eventChips(day.dataset.date));
+      day.append(add, eventChips(dateKey));
       return day;
     })
   );
 }
 
-/** The events on a day, as they appear inside its cell. */
+/** The events on a day, as the buttons that open them for changing. */
 function eventChips(date) {
   const list = document.createElement("span");
   list.className = "day__events";
 
   for (const event of eventsOn(date)) {
-    const chip = document.createElement("span");
+    const chip = document.createElement("button");
+    chip.type = "button";
     chip.className = "event";
     chip.dataset.eventId = event.id;
+    chip.setAttribute("aria-label", `Change ${event.title} at ${event.time}`);
 
     const time = document.createElement("span");
     time.className = "event__time";

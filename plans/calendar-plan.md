@@ -171,6 +171,13 @@ a remote before step 1 if you want real PRs from the start.
   in the dialog, and cancelling makes no change. The empty-title guard is the
   same one from step 4, applied to edits, leaving the original untouched.
 - **Done when:** 🗑️ criteria 1–6.
+- **Built:** as planned. The day cell was restructured so events could become
+  buttons of their own; the day's number now lives inside the "add" surface so
+  that a day full of events still has somewhere to press to add another. Two
+  regressions were caught while doing it: the number inside a `<button>` lost
+  The Look's colour (card 02's own test caught it), and `[hidden]` was being
+  overridden by `.panel__actions { display: flex }`, so the confirmation showed
+  alongside the buttons it was meant to replace.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 

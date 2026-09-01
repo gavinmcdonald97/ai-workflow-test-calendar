@@ -7,6 +7,13 @@
   box-sizing: border-box;
 }
 
+/* The `hidden` attribute means hidden, full stop. Without this, any element
+   given a `display` by a class of its own — a flex row of buttons, say — stays
+   on screen while the markup says it is hidden. */
+[hidden] {
+  display: none !important;
+}
+
 /* Tells the browser we support both, so its own controls — the time picker,
    scrollbars — follow the same light or dark as the rest of the page. */
 html {

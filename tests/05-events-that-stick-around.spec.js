@@ -34,7 +34,7 @@ const eventsShownOn = (page, date) =>
   );
 
 async function addEvent(page, { date, title, time }) {
-  await page.locator(`.day[data-date="${date}"]`).click();
+  await page.locator(`.day[data-date="${date}"] .day__add`).click();
   await page.locator("#event-title").fill(title);
   await page.locator("#event-time").fill(time);
   await page.getByRole("button", { name: "Save" }).click();

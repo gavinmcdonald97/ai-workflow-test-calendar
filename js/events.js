@@ -99,6 +99,10 @@ function formatDayLong(date) {
 // The panel
 // ---------------------------------------------------------------------------
 
+// The event the panel is changing, or null when it is adding a new one. This is
+// the only difference between the two modes.
+let panelEventId = null;
+
 // The day the panel is adding to. Set every time the panel is opened, and only
 // read while it is open.
 //
@@ -112,25 +116,53 @@ function panelParts() {
   return {
     panel: document.querySelector("#event-panel"),
     form: document.querySelector("#event-form"),
+    heading: document.querySelector("#event-panel-title"),
     day: document.querySelector("#event-panel-day"),
     title: document.querySelector("#event-title"),
     time: document.querySelector("#event-time"),
     error: document.querySelector("#event-title-error"),
+    actions: document.querySelector("#event-actions"),
+    deleteButton: document.querySelector("#event-delete"),
+    confirm: document.querySelector("#event-delete-confirm"),
   };
 }
 
-/** Opens the panel to add an event to one day. */
-function openEventPanel(date) {
-  const { panel, form, day, title, time, error } = panelParts();
+/**
+ * Opens the panel — to add an event to a day, or, given an event's id, to change
+ * that event.
+ */
+function openEventPanel(date, eventId = null) {
+  const parts = panelParts();
+  const { panel, form, heading, day, title, time, error } = parts;
 
   panelDate = date;
+  panelEventId = eventId;
   day.textContent = formatDayLong(date);
   form.reset();
-  time.value = "09:00";
   showTitleError(error, title, null);
+  showDeleteConfirmation(parts, false);
+
+  const existing = events.find((event) => event.id === eventId);
+  if (existing) {
+    heading.textContent = "Edit event";
+    title.value = existing.title;
+    time.value = existing.time;
+  } else {
+    heading.textContent = "New event";
+    time.value = "09:00";
+  }
+  // There is only something to delete once the event exists.
+  parts.deleteButton.hidden = !existing;
 
   panel.showModal();
   title.focus();
+  title.select();
+}
+
+/** Swaps the normal buttons for "Delete this event?", or back again. */
+function showDeleteConfirmation({ actions, confirm }, asking) {
+  actions.hidden = asking;
+  confirm.hidden = !asking;
 }
 
 /** Shows the reason a title was refused, or clears it when given null. */
@@ -149,6 +181,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // One listener for the whole grid rather than one per day, so it keeps
   // working as the grid is redrawn.
   document.querySelector("#calendar-grid").addEventListener("click", (clicked) => {
+    // An event is checked for first: pressing one opens that event rather than
+    // starting a new one on the day it sits in.
+    const chip = clicked.target.closest(".event");
+    if (chip) {
+      const existing = events.find((event) => event.id === chip.dataset.eventId);
+      if (existing) openEventPanel(existing.date, existing.id);
+      return;
+    }
+
     const day = clicked.target.closest(".day");
     if (day) openEventPanel(day.dataset.date);
   });
@@ -163,21 +204,40 @@ document.addEventListener("DOMContentLoaded", () => {
       return; // Nothing is created, and the panel stays open.
     }
 
-    events.push({
-      id: newEventId(),
-      date: panelDate,
-      // A time input can be left empty; treat that as the start of the day so
-      // the event still sorts sensibly against the others.
-      time: time.value || "00:00",
-      title: name,
-    });
+    // A time input can be left empty; treat that as the start of the day so the
+    // event still sorts sensibly against the others.
+    const whenValue = time.value || "00:00";
+
+    const existing = events.find((event) => event.id === panelEventId);
+    if (existing) {
+      // Changed in place, so no second copy is left behind. The day is not
+      // touched — moving an event to another day is parked for later.
+      existing.title = name;
+      existing.time = whenValue;
+    } else {
+      events.push({ id: newEventId(), date: panelDate, time: whenValue, title: name });
+    }
 
     saveEvents();
     panel.close();
     showMonth(shownYear, shownMonth); // Redraw, so the new event appears.
   });
 
+  // Deleting takes two presses. The first only asks.
+  const parts = panelParts();
+  parts.deleteButton.addEventListener("click", () => showDeleteConfirmation(parts, true));
+  document.querySelector("#event-delete-keep")
+    .addEventListener("click", () => showDeleteConfirmation(parts, false));
+
+  document.querySelector("#event-delete-really").addEventListener("click", () => {
+    events = events.filter((event) => event.id !== panelEventId);
+    saveEvents();
+    panel.close();
+    showMonth(shownYear, shownMonth);
+  });
+
   // Cancel, Escape and clicking away all just close the panel. Nothing is
-  // created, because creating only ever happens on submit above.
+  // created, changed or deleted, because each of those only ever happens on the
+  // button that says so.
   document.querySelector("#event-cancel").addEventListener("click", () => panel.close());
 });

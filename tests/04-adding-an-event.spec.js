@@ -30,9 +30,15 @@ const eventsShownOn = (page, date) =>
     )
   );
 
-/** Clicks a day, fills the panel in and saves. */
+/**
+ * Clicks the empty part of a day, fills the panel in and saves.
+ *
+ * `.day__add` is the surface behind the cell that means "add something here".
+ * The events sitting on top of it are buttons of their own that open what they
+ * already are, so a day with events on it is not one big target any more.
+ */
 async function addEvent(page, { date, title, time }) {
-  await day(page, date).click();
+  await day(page, date).locator(".day__add").click();
   await titleField(page).fill(title);
   await timeField(page).fill(time);
   await page.getByRole("button", { name: "Save" }).click();
@@ -48,14 +54,14 @@ test("Criterion 1: clicking a day opens a panel naming that day", async ({ brows
 
   await expect(panel(page)).toBeHidden();
 
-  await day(page, "2026-09-17").click();
+  await day(page, "2026-09-17").locator(".day__add").click();
   await expect(panel(page)).toBeVisible();
   await expect(page.locator("#event-panel-day")).toHaveText("Thursday 17 September");
 
   // A different day names that day instead — the panel really follows the
   // day clicked rather than showing something fixed.
   await page.getByRole("button", { name: "Cancel" }).click();
-  await day(page, "2026-09-03").click();
+  await day(page, "2026-09-03").locator(".day__add").click();
   await expect(page.locator("#event-panel-day")).toHaveText("Thursday 3 September");
 
   await page.close();
@@ -89,7 +95,7 @@ test("Criteria 2 and 3: saving puts the event on the day and closes the panel", 
 test("Criterion 4: an empty title is refused and nothing is created", async ({ browser }) => {
   const page = await openCalendar(browser);
 
-  await day(page, "2026-09-17").click();
+  await day(page, "2026-09-17").locator(".day__add").click();
   await page.getByRole("button", { name: "Save" }).click();
 
   await expect(errorMessage(page)).toBeVisible();
@@ -106,7 +112,7 @@ test("Criterion 4: an empty title is refused and nothing is created", async ({ b
 test("Criterion 4: a title of only spaces is refused too", async ({ browser }) => {
   const page = await openCalendar(browser);
 
-  await day(page, "2026-09-17").click();
+  await day(page, "2026-09-17").locator(".day__add").click();
   await titleField(page).fill("   ");
   await page.getByRole("button", { name: "Save" }).click();
 
@@ -130,14 +136,14 @@ test("Criterion 5: closing without saving creates nothing", async ({ browser }) 
   const page = await openCalendar(browser);
 
   // Cancel, with a title typed in — the tempting case to get wrong.
-  await day(page, "2026-09-17").click();
+  await day(page, "2026-09-17").locator(".day__add").click();
   await titleField(page).fill("Should not exist");
   await page.getByRole("button", { name: "Cancel" }).click();
   await expect(panel(page)).toBeHidden();
   expect(await eventsShownOn(page, "2026-09-17")).toEqual([]);
 
   // Escape, likewise.
-  await day(page, "2026-09-17").click();
+  await day(page, "2026-09-17").locator(".day__add").click();
   await titleField(page).fill("Should also not exist");
   await page.keyboard.press("Escape");
   await expect(panel(page)).toBeHidden();
@@ -194,9 +200,9 @@ test("the day being added to is not cleared behind the panel's back", async ({ b
     const panel = document.querySelector("#event-panel");
 
     // Open one day, close it, and open another with no pause in between.
-    document.querySelector('.day[data-date="2026-09-10"]').click();
+    document.querySelector('.day[data-date="2026-09-10"] .day__add').click();
     panel.close();
-    document.querySelector('.day[data-date="2026-09-21"]').click();
+    document.querySelector('.day[data-date="2026-09-21"] .day__add').click();
   });
 
   await titleField(page).fill("Haircut");
