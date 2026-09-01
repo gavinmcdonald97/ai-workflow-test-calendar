@@ -146,8 +146,19 @@ a remote before step 1 if you want real PRs from the start.
   change. Step 4's in-memory list becomes the thing that is loaded at startup
   and saved on change; nothing else about step 4 changes.
 - **Done when:** 💾 criteria 1–4.
-- **Verified by:** <harvest>
-- **PR:** <trellis>
+- **Built:** storage sits in `js/events.js` rather than a module of its own —
+  the plan suggested separating it, but load and save are used only by the
+  events and the file is still short enough to read in one go. Caught a mistake
+  while writing it: the events list was initialised above the `const` holding
+  the storage key, which throws, because `const` is not hoisted the way a
+  function declaration is. Criterion 3 depends on deleting, which card 6
+  delivers; what belongs to this card — that saving writes the whole list rather
+  than appending — is proved here.
+- **Verified by:** `tests/05-events-that-stick-around.spec.js` — 10 tests. The
+  corruption tests had to be strengthened: asserting no chips were drawn passed
+  for the wrong reason, because a malformed entry has no usable date and never
+  draws one anyway. They now assert nothing was loaded.
+- **PR:** [#6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) — `calendar/05-events-that-stick-around` → `calendar/04-adding-an-event`
 
 ### Step 6 — Edit and delete an event · Card: 🗑️ Changing Your Mind
 - **Goal:** Clicking an existing event opens it prefilled; saving updates it in
@@ -172,7 +183,7 @@ Card PRs, merge order bottom-up into the project trunk:
 2. [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — 🗓️ The Month Grid (in review)
 3. [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — ⏭️ Moving Between Months (in review)
 4. [#5](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/5) — ✍️ Adding an Event (in review)
-5. <trellis> — 💾 Events That Stick Around
+5. [#6](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/6) — 💾 Events That Stick Around (in review)
 6. <trellis> — 🗑️ Changing Your Mind
 
 Feature PR: <trellis> — `feature/calendar` → `main` (user merges)
