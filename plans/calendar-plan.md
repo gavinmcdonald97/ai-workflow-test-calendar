@@ -69,7 +69,7 @@ a remote before step 1 if you want real PRs from the start.
 - **Verified by:** `tests/01-the-look.spec.js` — 9 tests, all four criteria
   proved red→green. Test tooling for the whole project was set up here:
   Playwright driving a plain `python3 -m http.server`, run with `npm test`.
-- **PR:** <trellis>
+- **PR:** [#1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) — `calendar/01-the-look` → `feature/calendar`
 
 ### Step 2 — Render the current month · Card: 🗓️ The Month Grid
 - **Goal:** Opening `index.html` shows the current month, correctly laid out and
@@ -145,7 +145,7 @@ a remote before step 1 if you want real PRs from the start.
 ## Stack
 Project trunk: `feature/calendar` (from `main`).
 Card PRs, merge order bottom-up into the project trunk:
-1. <trellis> — 🎨 The Look
+1. [#1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) — 🎨 The Look (in review)
 2. <trellis> — 🗓️ The Month Grid
 3. <trellis> — ⏭️ Moving Between Months
 4. <trellis> — ✍️ Adding an Event

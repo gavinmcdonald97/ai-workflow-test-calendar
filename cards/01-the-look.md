@@ -1,7 +1,7 @@
 # 🎨 The Look
 
-**Status:** done
-**Branch / PR:** <filled by trellis>
+**Status:** in-review
+**Branch / PR:** `calendar/01-the-look` · [PR #1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) → `feature/calendar`
 
 ## What it is
 The visual foundation the whole calendar is built on: the colours, the
