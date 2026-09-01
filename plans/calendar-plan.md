@@ -106,8 +106,13 @@ a remote before step 1 if you want real PRs from the start.
   marker is decided by comparing a cell's date to the real current date, so it
   simply doesn't appear in other months.
 - **Done when:** ⏭️ criteria 1–5.
-- **Verified by:** <harvest>
-- **PR:** <trellis>
+- **Built:** as planned. Found and fixed a real bug from step 2 while building:
+  today was marked wherever it appeared, so viewing August circled the 1st of
+  September in its trailing row. Today is now only marked when it belongs to the
+  month being shown.
+- **Verified by:** `tests/03-moving-between-months.spec.js` — 6 tests, all five
+  criteria proved red→green, driving the real buttons.
+- **PR:** [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — `calendar/03-moving-between-months` → `calendar/02-the-month-grid`
 
 ### Step 4 — Add an event to a day · Card: ✍️ Adding an Event
 - **Goal:** Clicking a day opens a panel naming that day; a title and a time can
@@ -156,7 +161,7 @@ Project trunk: `feature/calendar` (from `main`).
 Card PRs, merge order bottom-up into the project trunk:
 1. [#1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) — 🎨 The Look (in review)
 2. [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — 🗓️ The Month Grid (in review)
-3. <trellis> — ⏭️ Moving Between Months
+3. [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — ⏭️ Moving Between Months (in review)
 4. <trellis> — ✍️ Adding an Event
 5. <trellis> — 💾 Events That Stick Around
 6. <trellis> — 🗑️ Changing Your Mind
