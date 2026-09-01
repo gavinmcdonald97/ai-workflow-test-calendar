@@ -1,7 +1,7 @@
 // 🎨 The Look — proves the four acceptance criteria on cards/01-the-look.md.
 
 import { test, expect } from "@playwright/test";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { composite, contrastRatio } from "./contrast.js";
 
 /** Reads a design token's value as the browser actually resolves it. */
@@ -107,11 +107,17 @@ test.describe("Criterion 2: everything is defined once, by name", () => {
 
   test("no stylesheet outside tokens.css picks a colour of its own", () => {
     // A raw colour anywhere else is the drift this card exists to prevent.
+    // Every stylesheet is checked, including ones added by later cards — that
+    // is the point: the rule has to hold as the project grows.
     const colourLiteral = /#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\(/gi;
 
-    for (const file of ["styles/base.css", "styles/components.css", "styles/design-page.css"]) {
-      const found = readFileSync(file, "utf8").match(colourLiteral) ?? [];
-      expect(found, `${file} chooses its own colours: ${found.join(", ")}`).toEqual([]);
+    const stylesheets = readdirSync("styles")
+      .filter((name) => name.endsWith(".css") && name !== "tokens.css");
+    expect(stylesheets.length).toBeGreaterThan(0);
+
+    for (const name of stylesheets) {
+      const found = readFileSync(`styles/${name}`, "utf8").match(colourLiteral) ?? [];
+      expect(found, `styles/${name} chooses its own colours: ${found.join(", ")}`).toEqual([]);
     }
   });
 

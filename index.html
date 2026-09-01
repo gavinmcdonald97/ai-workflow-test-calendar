@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendar</title>
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/calendar.css">
+
+  <script src="js/calendar.js" defer></script>
+</head>
+<body>
+  <main class="calendar glass">
+    <header class="calendar__header">
+      <h1 class="calendar__title" id="month-title"></h1>
+    </header>
+
+    <div class="calendar__weekdays" id="weekdays" aria-hidden="true"></div>
+    <div class="calendar__grid" id="calendar-grid"></div>
+  </main>
+</body>
+</html>

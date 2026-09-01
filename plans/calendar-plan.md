@@ -83,6 +83,13 @@ a remote before step 1 if you want real PRs from the start.
   behaviour is a media query, not a separate code path. All colours and type
   come from the tokens in step 1 — this step adds no new ones.
 - **Done when:** 🗓️ criteria 1–6.
+- **Built:** as planned. `renderMonth` takes `today` as an argument so tests can
+  state what today is without moving the clock. Only as many whole weeks as the
+  month needs are drawn, rather than a fixed six. Card 01's "no stylesheet picks
+  its own colour" check was broadened to scan every stylesheet rather than a
+  fixed list, so `calendar.css` — and every stylesheet a later card adds — is
+  covered by it. Fading the neighbouring-month days with `opacity` was tried and
+  removed: it measured 2.7 against the glass, under the 4.5 The Look guarantees.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 

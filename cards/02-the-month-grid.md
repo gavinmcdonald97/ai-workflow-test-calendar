@@ -1,6 +1,6 @@
 # 🗓️ The Month Grid
 
-**Status:** understood
+**Status:** building
 **Branch / PR:** <filled by trellis>
 
 ## What it is
@@ -39,6 +39,31 @@ No navigation, no events, no interaction.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._
+
+## What was built
+- `index.html` — the calendar page: a glass card holding the month title, the
+  weekday strip and the grid of days.
+- `js/calendar.js` — `monthGrid(year, month)` works out which days belong on the
+  page and is kept apart from `renderMonth(...)`, which draws them. The date
+  arithmetic is where calendars usually go wrong, so it can be checked on its
+  own.
+- `styles/calendar.css` — the grid layout, the day cells, today, and the
+  phone-width behaviour. It invents no colours or sizes; everything comes from
+  The Look's tokens.
+
+Weeks start on Monday. The page shows only as many whole weeks as it takes to
+cover the month, so a short month doesn't get a trailing week belonging entirely
+to the next one.
+
+`renderMonth` takes `today` as an argument rather than reading the clock inside
+itself. That is the seam the tests use to say what "today" is without moving the
+computer's clock — and ⏭️ Moving Between Months needs the same seam to prove
+today is only marked in the month it actually falls in.
+
+Days outside the month are set apart by muted text and by having no cell of
+their own. An earlier version also faded them with `opacity`, which dropped them
+to 2.7 against the glass — under the 4.5 The Look guarantees. The opacity was
+removed; the two remaining signals are enough.
 
 ## Could come later
 Week and day views. Week numbers. Starting the week on Sunday instead of Monday.
