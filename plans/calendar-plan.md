@@ -90,7 +90,9 @@ a remote before step 1 if you want real PRs from the start.
   fixed list, so `calendar.css` — and every stylesheet a later card adds — is
   covered by it. Fading the neighbouring-month days with `opacity` was tried and
   removed: it measured 2.7 against the glass, under the 4.5 The Look guarantees.
-- **Verified by:** <harvest>
+- **Verified by:** `tests/02-the-month-grid.spec.js` — 6 tests, all six criteria
+  proved red→green. The clock and the language are pinned in every test, so the
+  results don't depend on when or where they run.
 - **PR:** <trellis>
 
 ### Step 3 — Month navigation and "today" · Card: ⏭️ Moving Between Months
