@@ -1,6 +1,6 @@
 # 💾 Events That Stick Around
 
-**Status:** building
+**Status:** done
 **Branch / PR:** <filled by trellis>
 
 ## What it is
@@ -20,17 +20,51 @@ Saved in this browser, on this machine, using the browser's own storage. No
 account, no server, no syncing between devices.
 
 ## Acceptance criteria
+Events are added through the real panel and the page is then genuinely reloaded.
+Storage is never pre-seeded through `addInitScript`, because that re-runs on
+every navigation — including a reload — and would overwrite what the app had
+just saved, making "it survived a refresh" pass for the wrong reason.
+
 1. After adding events and reloading the page, they are all still there, on the
-   right days, with the right titles and times.
-   - **Verify:** <harvest>
+   right days, with the right titles and times. ✅
+   - **Verify:** `test: tests/05-events-that-stick-around.spec.js::Criterion 1`
+   - **Red:** reverted `js/events.js` to the card before this one, which saves
+     nothing — failed. **Green:** restored.
 2. Events added in a different month are still there when navigating back to
-   that month.
-   - **Verify:** <harvest>
-3. Deleting an event and reloading does not bring it back.
-   - **Verify:** <harvest>
+   that month. ✅
+   - **Verify:** `test: tests/05-events-that-stick-around.spec.js::Criterion 2` —
+     adds in November, reloads, confirms the calendar reopens on September with
+     nothing on screen, then navigates back and finds it. So it is proved to be
+     read back rather than left over on screen.
+   - **Red:** as above — failed. **Green:** restored.
+3. Deleting an event and reloading doesn't bring it back. ✅ *(the half this card
+   owns — see below)*
+   - **Verify:** `test: tests/05-events-that-stick-around.spec.js::Criterion 3` —
+     removes an event from the list and saves through the app's own save path,
+     then reloads.
+   - **Red:** made saving merge with what was already stored instead of
+     replacing it, so removals never took — failed. **Green:** restored.
 4. If the saved data is corrupted or unreadable, the app still opens with an
-   empty calendar rather than a blank, broken screen.
-   - **Verify:** <harvest>
+   empty calendar rather than a blank, broken screen. ✅
+   - **Verify:** `test: tests/05-events-that-stick-around.spec.js::Criterion 4` —
+     seven tests: six kinds of corruption, plus one good entry beside one bad.
+     Each asserts nothing was thrown on load, a whole working calendar is on
+     screen, nothing was loaded, and a new event can still be added on top.
+   - **Red:** two separate breaks, because there are two separate guards.
+     Removing the guard around parsing failed the "not JSON at all" case;
+     removing the per-entry check failed four others.
+   - **These tests were weak at first.** They asserted only that no event *chips*
+     were drawn — and a malformed entry has no usable date, so it never lands on
+     a day and never draws a chip whether or not it was loaded. Removing the
+     per-entry check left them green. They now also assert that nothing was
+     *loaded*, which is the thing the guard actually does.
+
+### A note on criterion 3
+There is no delete button yet — 🗑️ Changing Your Mind adds it. What this card
+owns is that saving writes the whole list rather than appending, so an event
+taken out of the list really is gone after a reload; that is what is proved
+here, through the app's own save path. The end-to-end version — press Delete,
+reload, still gone — is proved in 🗑️ Changing Your Mind.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._

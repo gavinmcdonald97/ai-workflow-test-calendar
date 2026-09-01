@@ -154,7 +154,10 @@ a remote before step 1 if you want real PRs from the start.
   function declaration is. Criterion 3 depends on deleting, which card 6
   delivers; what belongs to this card — that saving writes the whole list rather
   than appending — is proved here.
-- **Verified by:** <harvest>
+- **Verified by:** `tests/05-events-that-stick-around.spec.js` — 10 tests. The
+  corruption tests had to be strengthened: asserting no chips were drawn passed
+  for the wrong reason, because a malformed entry has no usable date and never
+  draws one anyway. They now assert nothing was loaded.
 - **PR:** <trellis>
 
 ### Step 6 — Edit and delete an event · Card: 🗑️ Changing Your Mind
