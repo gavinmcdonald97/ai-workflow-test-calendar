@@ -134,7 +134,7 @@ a remote before step 1 if you want real PRs from the start.
 - **Verified by:** `tests/04-adding-an-event.spec.js` — 7 tests, all six criteria
   proved red→green, driving the real panel. Criterion 5 is a negative case, so
   its red came from forcing the bad thing to happen rather than removing code.
-- **PR:** <trellis>
+- **PR:** [#5](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/5) — `calendar/04-adding-an-event` → `calendar/03-moving-between-months`
 
 ### Step 5 — Save events in the browser · Card: 💾 Events That Stick Around
 - **Goal:** Events survive a reload, in any month, and corrupted stored data
@@ -165,11 +165,13 @@ a remote before step 1 if you want real PRs from the start.
 
 ## Stack
 Project trunk: `feature/calendar` (from `main`).
+_GitHub shares its numbering between issues and PRs, so there is no PR #4 —
+card 04's PR is #5._
 Card PRs, merge order bottom-up into the project trunk:
 1. [#1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) — 🎨 The Look (in review)
 2. [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — 🗓️ The Month Grid (in review)
 3. [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — ⏭️ Moving Between Months (in review)
-4. <trellis> — ✍️ Adding an Event
+4. [#5](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/5) — ✍️ Adding an Event (in review)
 5. <trellis> — 💾 Events That Stick Around
 6. <trellis> — 🗑️ Changing Your Mind
 

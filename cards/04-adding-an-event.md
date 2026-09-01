@@ -1,7 +1,7 @@
 # ✍️ Adding an Event
 
-**Status:** done
-**Branch / PR:** <filled by trellis>
+**Status:** in-review
+**Branch / PR:** `calendar/04-adding-an-event` · [PR #5](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/5) → `calendar/03-moving-between-months`
 
 ## What it is
 Clicking a day, typing a title and a time, saving, and seeing the event appear
