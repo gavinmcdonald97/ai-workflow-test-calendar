@@ -1,0 +1,13 @@
+{
+  "name": "calendar",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A small, carefully designed calendar that runs in the browser.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  },
+  "type": "module"
+}
