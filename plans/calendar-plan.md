@@ -83,8 +83,17 @@ a remote before step 1 if you want real PRs from the start.
   behaviour is a media query, not a separate code path. All colours and type
   come from the tokens in step 1 — this step adds no new ones.
 - **Done when:** 🗓️ criteria 1–6.
-- **Verified by:** <harvest>
-- **PR:** <trellis>
+- **Built:** as planned. `renderMonth` takes `today` as an argument so tests can
+  state what today is without moving the clock. Only as many whole weeks as the
+  month needs are drawn, rather than a fixed six. Card 01's "no stylesheet picks
+  its own colour" check was broadened to scan every stylesheet rather than a
+  fixed list, so `calendar.css` — and every stylesheet a later card adds — is
+  covered by it. Fading the neighbouring-month days with `opacity` was tried and
+  removed: it measured 2.7 against the glass, under the 4.5 The Look guarantees.
+- **Verified by:** `tests/02-the-month-grid.spec.js` — 6 tests, all six criteria
+  proved red→green. The clock and the language are pinned in every test, so the
+  results don't depend on when or where they run.
+- **PR:** [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — `calendar/02-the-month-grid` → `calendar/01-the-look`
 
 ### Step 3 — Month navigation and "today" · Card: ⏭️ Moving Between Months
 - **Goal:** Previous, next and today controls that move the grid through time
@@ -146,7 +155,7 @@ a remote before step 1 if you want real PRs from the start.
 Project trunk: `feature/calendar` (from `main`).
 Card PRs, merge order bottom-up into the project trunk:
 1. [#1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) — 🎨 The Look (in review)
-2. <trellis> — 🗓️ The Month Grid
+2. [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — 🗓️ The Month Grid (in review)
 3. <trellis> — ⏭️ Moving Between Months
 4. <trellis> — ✍️ Adding an Event
 5. <trellis> — 💾 Events That Stick Around

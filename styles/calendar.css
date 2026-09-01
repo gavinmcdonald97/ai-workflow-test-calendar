@@ -1,0 +1,123 @@
+/* 🗓️ The Month Grid — one page of the calendar.
+   Every value comes from tokens.css; this file invents nothing of its own. */
+
+.calendar {
+  max-width: 900px;
+  margin: var(--space-7) auto;
+  padding: var(--space-6);
+}
+
+.calendar__header {
+  margin-bottom: var(--space-5);
+}
+
+.calendar__title {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* The weekday strip and the days below it are two grids with the same seven
+   columns, so the headings line up with the days underneath them. */
+.calendar__weekdays,
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.calendar__weekdays {
+  margin-bottom: var(--space-2);
+}
+
+.weekday {
+  padding: var(--space-1) var(--space-2);
+  color: var(--color-ink-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  min-height: 96px;
+  padding: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--color-sunken);
+}
+
+.day__number {
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-tight);
+  text-align: right;
+}
+
+/* Days belonging to the month either side. Quieter in two ways — muted text and
+   no cell of their own — so they read as out of scope without relying on colour
+   alone. No opacity on top of that: fading the text below full strength drops it
+   to 2.7 against the glass, well under the 4.5 The Look guarantees. */
+.day--outside {
+  background: none;
+}
+
+.day--outside .day__number {
+  color: var(--color-ink-muted);
+}
+
+/* Today. The one place the accent appears on the grid. */
+.day--today {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.day--today .day__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  min-width: 1.9em;
+  height: 1.9em;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-weight: 600;
+}
+
+/* ---- Phone ------------------------------------------------------------- */
+
+/* Seven columns have to stay seven columns — a calendar with a wrapped week is
+   not a calendar — so the cells get shorter and tighter rather than rearranged. */
+@media (max-width: 640px) {
+  .calendar {
+    margin: var(--space-4) var(--space-2);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+
+  .calendar__title {
+    font-size: var(--text-xl);
+  }
+
+  .calendar__weekdays,
+  .calendar__grid {
+    gap: var(--space-1);
+  }
+
+  .weekday {
+    padding: var(--space-1) 0;
+  }
+
+  .day {
+    min-height: 52px;
+    padding: var(--space-1);
+  }
+
+  .day__number {
+    font-size: var(--text-sm);
+  }
+}
