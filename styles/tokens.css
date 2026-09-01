@@ -36,6 +36,9 @@
      outside the current month. */
   --color-sunken: rgb(255 255 255 / 30%);
 
+  /* Dims the page behind an open panel. */
+  --color-backdrop-veil: rgb(20 30 60 / 28%);
+
   /* ---- Text ----------------------------------------------------------
      Solid, not translucent: these are the colours the contrast figures on
      the reference page are measured from. */
@@ -114,6 +117,7 @@
     --shadow-inset: inset 0 1px 2px rgb(0 0 0 / 30%);
 
     --color-sunken: rgb(0 0 0 / 22%);
+    --color-backdrop-veil: rgb(0 0 0 / 50%);
 
     --color-ink: #F5F5F7;
     --color-ink-muted: #BCBCC6;

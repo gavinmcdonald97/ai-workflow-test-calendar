@@ -92,7 +92,10 @@ function renderMonth(year, month, today = new Date()) {
 
   grid.replaceChildren(
     ...monthGrid(year, month).map(({ date, inMonth }) => {
-      const day = document.createElement("div");
+      // A button, not a plain box, so a day can be reached and opened with the
+      // keyboard as well as the mouse.
+      const day = document.createElement("button");
+      day.type = "button";
       day.className = "day";
       if (!inMonth) day.classList.add("day--outside");
       // Only when it belongs to the month being shown: a neighbouring-month
@@ -100,16 +103,42 @@ function renderMonth(year, month, today = new Date()) {
       // September sitting in its trailing row.
       if (inMonth && isSameDay(date, today)) day.classList.add("day--today");
 
-      // The full date, for anyone using a screen reader and for the tests.
       day.dataset.date = toDateKey(date);
+      day.setAttribute("aria-label", `Add an event on ${formatDayLong(day.dataset.date)}`);
 
       const number = document.createElement("span");
       number.className = "day__number";
       number.textContent = date.getDate();
-      day.append(number);
+
+      day.append(number, eventChips(day.dataset.date));
       return day;
     })
   );
+}
+
+/** The events on a day, as they appear inside its cell. */
+function eventChips(date) {
+  const list = document.createElement("span");
+  list.className = "day__events";
+
+  for (const event of eventsOn(date)) {
+    const chip = document.createElement("span");
+    chip.className = "event";
+    chip.dataset.eventId = event.id;
+
+    const time = document.createElement("span");
+    time.className = "event__time";
+    time.textContent = event.time;
+
+    const title = document.createElement("span");
+    title.className = "event__title";
+    // textContent, not innerHTML — a title is text, never markup.
+    title.textContent = event.title;
+
+    chip.append(time, title);
+    list.append(chip);
+  }
+  return list;
 }
 
 /** A date as "2026-09-15" — sortable, and the same string every time. */
