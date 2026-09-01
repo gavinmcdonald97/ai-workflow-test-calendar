@@ -131,7 +131,9 @@ a remote before step 1 if you want real PRs from the start.
   `close` event fires asynchronously, so clearing the day-being-edited there
   landed after the panel had already been reopened, and the next event was saved
   with no date. The handler was removed.
-- **Verified by:** <harvest>
+- **Verified by:** `tests/04-adding-an-event.spec.js` — 7 tests, all six criteria
+  proved red→green, driving the real panel. Criterion 5 is a negative case, so
+  its red came from forcing the bad thing to happen rather than removing code.
 - **PR:** <trellis>
 
 ### Step 5 — Save events in the browser · Card: 💾 Events That Stick Around
