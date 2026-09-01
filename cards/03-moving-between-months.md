@@ -1,6 +1,6 @@
 # ⏭️ Moving Between Months
 
-**Status:** understood
+**Status:** building
 **Branch / PR:** <filled by trellis>
 
 ## What it is
@@ -39,6 +39,23 @@ year boundaries and leap years.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._
+
+## What was built
+- Three controls in the calendar header: back, **Today**, forward. On a phone
+  they drop to their own row rather than squeezing the month name.
+- `js/calendar.js` gained the month that is showing (`shownYear`, `shownMonth`)
+  as the only thing that changes as you move around, plus `showMonth`,
+  `stepMonth` and `showToday`. Everything on screen is redrawn from that pair,
+  rather than the page being edited in place.
+
+`stepMonth` builds the new month as a date rather than adding to the month
+number, so December + 1 becomes January of the next year and January - 1 becomes
+December of the previous one, without any of that being written out.
+
+**This card tightened 🗓️ The Month Grid.** Today was being marked wherever it
+appeared, including as a neighbouring-month day — so looking at August circled
+the 1st of September sitting in its trailing row. Today is now marked only when
+it belongs to the month being shown, which is what criterion 5 asks for.
 
 ## Could come later
 Keyboard shortcuts. Swipe gestures on touch screens. Jumping straight to a

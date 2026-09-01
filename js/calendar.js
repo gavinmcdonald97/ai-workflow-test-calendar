@@ -95,7 +95,10 @@ function renderMonth(year, month, today = new Date()) {
       const day = document.createElement("div");
       day.className = "day";
       if (!inMonth) day.classList.add("day--outside");
-      if (isSameDay(date, today)) day.classList.add("day--today");
+      // Only when it belongs to the month being shown: a neighbouring-month
+      // day is out of scope, so viewing August must not circle the 1st of
+      // September sitting in its trailing row.
+      if (inMonth && isSameDay(date, today)) day.classList.add("day--today");
 
       // The full date, for anyone using a screen reader and for the tests.
       day.dataset.date = toDateKey(date);
@@ -117,8 +120,46 @@ function toDateKey(date) {
 }
 
 // ---------------------------------------------------------------------------
+// ⏭️ Moving Between Months
+// ---------------------------------------------------------------------------
+
+// The month currently on screen. This is the only thing that changes as you
+// move around; everything you see is drawn from it.
+let shownYear;
+let shownMonth;
+
+/** Puts a month on screen and remembers that it is the one showing. */
+function showMonth(year, month) {
+  shownYear = year;
+  shownMonth = month;
+  renderMonth(year, month);
+}
+
+/**
+ * Moves the calendar `step` months from where it is — -1 for back, 1 for
+ * forward.
+ *
+ * The new month is built as a date rather than by adding to the month number,
+ * so December + 1 becomes January of the next year, and January - 1 becomes
+ * December of the previous one, without any of that being written out here.
+ */
+function stepMonth(step) {
+  const moved = new Date(shownYear, shownMonth + step, 1);
+  showMonth(moved.getFullYear(), moved.getMonth());
+}
+
+/** Back to the month today is in. */
+function showToday() {
+  const today = new Date();
+  showMonth(today.getFullYear(), today.getMonth());
+}
+
+// ---------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-  const today = new Date();
-  renderMonth(today.getFullYear(), today.getMonth(), today);
+  document.querySelector("#previous-month").addEventListener("click", () => stepMonth(-1));
+  document.querySelector("#next-month").addEventListener("click", () => stepMonth(1));
+  document.querySelector("#today").addEventListener("click", showToday);
+
+  showToday();
 });

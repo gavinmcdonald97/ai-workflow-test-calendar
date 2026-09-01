@@ -106,6 +106,10 @@ a remote before step 1 if you want real PRs from the start.
   marker is decided by comparing a cell's date to the real current date, so it
   simply doesn't appear in other months.
 - **Done when:** ⏭️ criteria 1–5.
+- **Built:** as planned. Found and fixed a real bug from step 2 while building:
+  today was marked wherever it appeared, so viewing August circled the 1st of
+  September in its trailing row. Today is now only marked when it belongs to the
+  month being shown.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 
