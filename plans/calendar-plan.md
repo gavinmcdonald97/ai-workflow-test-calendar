@@ -112,7 +112,7 @@ a remote before step 1 if you want real PRs from the start.
   month being shown.
 - **Verified by:** `tests/03-moving-between-months.spec.js` — 6 tests, all five
   criteria proved red→green, driving the real buttons.
-- **PR:** <trellis>
+- **PR:** [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — `calendar/03-moving-between-months` → `calendar/02-the-month-grid`
 
 ### Step 4 — Add an event to a day · Card: ✍️ Adding an Event
 - **Goal:** Clicking a day opens a panel naming that day; a title and a time can
@@ -161,7 +161,7 @@ Project trunk: `feature/calendar` (from `main`).
 Card PRs, merge order bottom-up into the project trunk:
 1. [#1](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/1) — 🎨 The Look (in review)
 2. [#2](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/2) — 🗓️ The Month Grid (in review)
-3. <trellis> — ⏭️ Moving Between Months
+3. [#3](https://github.com/gavinmcdonald97/ai-workflow-test-calendar/pull/3) — ⏭️ Moving Between Months (in review)
 4. <trellis> — ✍️ Adding an Event
 5. <trellis> — 💾 Events That Stick Around
 6. <trellis> — 🗑️ Changing Your Mind
