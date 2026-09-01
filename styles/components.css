@@ -167,6 +167,12 @@
   font-size: var(--text-sm);
 }
 
+.panel__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
 .panel__actions {
   display: flex;
   gap: var(--space-3);
@@ -178,4 +184,19 @@
    away from Cancel and Save. */
 .panel__actions-spacer {
   margin-left: auto;
+}
+
+/* A panel shown as a dialog. The browser handles focus, Escape and the
+   backdrop; all this does is size it and dim what is behind. */
+dialog.panel {
+  width: min(420px, calc(100vw - var(--space-8)));
+  max-height: calc(100vh - var(--space-8));
+  overflow: auto;
+  color: var(--color-ink);
+}
+
+dialog.panel::backdrop {
+  background: var(--color-backdrop-veil);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }

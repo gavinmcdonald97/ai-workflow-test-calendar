@@ -1,6 +1,6 @@
 # ✍️ Adding an Event
 
-**Status:** understood
+**Status:** building
 **Branch / PR:** <filled by trellis>
 
 ## What it is
@@ -39,6 +39,31 @@ no notes, no colour.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._
+
+## What was built
+- `js/events.js` — the events themselves (`events`, `eventsOn`) and the panel
+  you add them in. Cards 💾 and 🗑️ will live here too.
+- The panel in `index.html` is a native `<dialog>`, so focus handling,
+  Escape-to-close and the backdrop come from the browser rather than being
+  written here.
+- Day cells became `<button>`s, so a day can be opened from the keyboard as well
+  as the mouse, and carry their events as chips with the accent down the leading
+  edge.
+- One click listener on the whole grid rather than one per day, so it keeps
+  working as the grid is redrawn.
+
+Titles are put on screen with `textContent`, never `innerHTML`, so a title is
+always text and never markup.
+
+**A dialog's `close` event fires asynchronously.** Clearing the day-being-edited
+in a `close` handler landed *after* the panel had been reopened for another day,
+and the next event was saved with no date at all — it existed but appeared
+nowhere. The handler was removed; the day is set every time the panel opens and
+only read while it is open.
+
+Time and title are stacked in the chip rather than sitting side by side. Side by
+side, a ~100px day cell cut the title to a letter or two — the half you actually
+need to recognise the event.
 
 ## Could come later
 End times and durations. All-day events. Location, notes and attendees. Colours

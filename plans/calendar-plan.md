@@ -126,6 +126,11 @@ a remote before step 1 if you want real PRs from the start.
   nothing is added. Day clicks are handled by one listener on the grid rather
   than one per cell.
 - **Done when:** ✍️ criteria 1–6.
+- **Built:** as planned, in a new `js/events.js`. Day cells became buttons so
+  they are reachable from the keyboard. One bug worth remembering: a dialog's
+  `close` event fires asynchronously, so clearing the day-being-edited there
+  landed after the panel had already been reopened, and the next event was saved
+  with no date. The handler was removed.
 - **Verified by:** <harvest>
 - **PR:** <trellis>
 
