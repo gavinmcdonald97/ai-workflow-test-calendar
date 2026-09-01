@@ -101,7 +101,7 @@ On `feature/calendar`, merged bottom-up into it:
 2. #2 — 🗓️ The Month Grid
 3. #3 — ⏭️ Moving Between Months
 4. **✍️ Adding an Event ← you are here**
-5. 💾 Events That Stick Around — not built yet
+5. #6 — 💾 Events That Stick Around
 6. 🗑️ Changing Your Mind — not built yet
 
 Then one feature PR `feature/calendar` → `main` for the maintainer to review and merge.
