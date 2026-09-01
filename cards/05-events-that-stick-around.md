@@ -37,8 +37,8 @@ just saved, making "it survived a refresh" pass for the wrong reason.
      nothing on screen, then navigates back and finds it. So it is proved to be
      read back rather than left over on screen.
    - **Red:** as above — failed. **Green:** restored.
-3. Deleting an event and reloading doesn't bring it back. ✅ *(the half this card
-   owns — see below)*
+3. Deleting an event and reloading doesn't bring it back. ✅ *(now proved end to
+   end — see below)*
    - **Verify:** `test: tests/05-events-that-stick-around.spec.js::Criterion 3` —
      removes an event from the list and saves through the app's own save path,
      then reloads.
@@ -60,11 +60,14 @@ just saved, making "it survived a refresh" pass for the wrong reason.
      *loaded*, which is the thing the guard actually does.
 
 ### A note on criterion 3
-There is no delete button yet — 🗑️ Changing Your Mind adds it. What this card
-owns is that saving writes the whole list rather than appending, so an event
-taken out of the list really is gone after a reload; that is what is proved
-here, through the app's own save path. The end-to-end version — press Delete,
-reload, still gone — is proved in 🗑️ Changing Your Mind.
+When this card was built there was no delete button, so it could only prove the
+half it owned: that saving writes the whole list rather than appending, so an
+event taken out of the list really is gone after a reload.
+
+🗑️ Changing Your Mind has since added deleting, and closes this out end to end —
+press Delete, reload, still gone — in
+`tests/06-changing-your-mind.spec.js::💾 criterion 3`. That test was proved red
+by stopping the save after a delete, which brought the event back.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._

@@ -178,7 +178,10 @@ a remote before step 1 if you want real PRs from the start.
   The Look's colour (card 02's own test caught it), and `[hidden]` was being
   overridden by `.panel__actions { display: flex }`, so the confirmation showed
   alongside the buttons it was meant to replace.
-- **Verified by:** <harvest>
+- **Verified by:** `tests/06-changing-your-mind.spec.js` — 8 tests, all six
+  criteria proved red→green. Criterion 5 is a negative claim and needed two
+  separate breaks. This step also closes out step 5's criterion 3 end to end,
+  now that deleting exists.
 - **PR:** <trellis>
 
 ## Stack
