@@ -103,7 +103,7 @@ On `feature/calendar`, merged bottom-up into it:
 1. #1 — 🎨 The Look
 2. #2 — 🗓️ The Month Grid
 3. **⏭️ Moving Between Months ← you are here**
-4. ✍️ Adding an Event — not built yet
+4. #5 — ✍️ Adding an Event
 5. 💾 Events That Stick Around — not built yet
 6. 🗑️ Changing Your Mind — not built yet
 
