@@ -1,6 +1,6 @@
 # 🎨 The Look
 
-**Status:** building
+**Status:** done
 **Branch / PR:** <filled by trellis>
 
 ## What it is
@@ -38,17 +38,34 @@ the wash for deep blue, violet and teal, and turns the frost into a lit film.
 ## Acceptance criteria
 1. There is a page I can open that shows the palette, the typefaces at their real
    sizes, and the standard components (button, text box, panel) as they will
-   actually appear in the app.
-   - **Verify:** <harvest>
+   actually appear in the app. ✅
+   - **Verify:** `test: tests/01-the-look.spec.js::Criterion 1` (3 tests)
+   - **Red:** removed the type specimens and the panel from `design.html` —
+     2 failed. **Green:** restored — 3 passed.
 2. Colours, fonts and spacing are defined in one place, by name, so a later card
-   refers to the accent colour by name rather than picking a colour itself.
-   - **Verify:** <harvest>
+   refers to the accent colour by name rather than picking a colour itself. ✅
+   - **Verify:** `test: tests/01-the-look.spec.js::Criterion 2` (3 tests) — every
+     token resolves, no stylesheet outside `tokens.css` contains a colour
+     literal, and the primary button really is painted with `--color-accent`.
+   - **Red:** put a hard-coded colour back into `components.css` and deleted a
+     token — 2 failed. **Green:** restored — 3 passed.
+   - This check found a real violation while being written: the input's inset
+     shadow had a hard-coded colour. It is now `--shadow-inset`.
 3. Switching the operating system to dark mode changes the page to a dark
-   version that is still readable.
-   - **Verify:** <harvest>
+   version that is still readable. ✅
+   - **Verify:** `test: tests/01-the-look.spec.js::Criterion 3` — loads the page
+     under both `colorScheme` settings and asserts the backdrop really darkens,
+     the ink really lightens, and the two still clear 4.5.
+   - **Red:** deleted the `prefers-color-scheme: dark` block — 1 failed.
+     **Green:** restored — 1 passed.
 4. Text on its background is legible enough to pass the standard accessibility
-   contrast check.
-   - **Verify:** <harvest>
+   contrast check. ✅
+   - **Verify:** `test: tests/01-the-look.spec.js::Criterion 4` (light and dark)
+     — reads the real token values off the live page, composites the glass fill
+     over every backdrop wash, and requires the **worst** resulting ratio to
+     clear 4.5 for each text colour. Measured worst case: 4.9 light, 5.1 dark.
+   - **Red:** set `--color-ink-muted` to a pale grey — light mode failed at 1.9,
+     dark still passed. **Green:** restored — both passed.
 
 _No criterion may be checked off without its verification passing. See the
 `harvest` skill._

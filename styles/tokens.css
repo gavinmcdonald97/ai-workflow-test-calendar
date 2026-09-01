@@ -29,6 +29,8 @@
   --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 90%);
   --glass-shadow: 0 8px 32px -8px rgb(20 30 60 / 18%);
   --glass-shadow-sm: 0 2px 8px -2px rgb(20 30 60 / 14%);
+  /* Recessed rather than raised — used by inputs. */
+  --shadow-inset: inset 0 1px 2px rgb(20 30 60 / 8%);
 
   /* Where a surface must be solid rather than glass — the recessed days
      outside the current month. */
@@ -109,6 +111,7 @@
     --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 14%);
     --glass-shadow: 0 8px 32px -8px rgb(0 0 0 / 60%);
     --glass-shadow-sm: 0 2px 8px -2px rgb(0 0 0 / 50%);
+    --shadow-inset: inset 0 1px 2px rgb(0 0 0 / 30%);
 
     --color-sunken: rgb(0 0 0 / 22%);
 

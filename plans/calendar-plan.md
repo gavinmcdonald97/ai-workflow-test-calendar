@@ -66,7 +66,9 @@ a remote before step 1 if you want real PRs from the start.
   dependency. Contrast was measured against the worst case — the most saturated
   point of the wash seen through the glass — in both themes; the lowest ratio is
   4.9 against a floor of 4.5.
-- **Verified by:** <harvest>
+- **Verified by:** `tests/01-the-look.spec.js` — 9 tests, all four criteria
+  proved red→green. Test tooling for the whole project was set up here:
+  Playwright driving a plain `python3 -m http.server`, run with `npm test`.
 - **PR:** <trellis>
 
 ### Step 2 — Render the current month · Card: 🗓️ The Month Grid
